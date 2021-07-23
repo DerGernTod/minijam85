@@ -1,0 +1,78 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://machine/machine_temp.png" type="Texture" id=1]
+[ext_resource path="res://machine/Machine.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 105.821, 28.7898 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 57.9443, 14.9307 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 79.3629, 14.9307 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 137.319, 14.9307 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 40.3055, 14.9307 )
+
+[node name="Machine" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 9.85, 9.85 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="GoldSpawnLocation" type="Node2D" parent="."]
+position = Vector2( 432.153, 472.47 )
+
+[node name="StaticBodies" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="StaticBodies"]
+position = Vector2( 245.685, 414.514 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D"]
+shape = SubResource( 1 )
+one_way_collision = true
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="StaticBodies"]
+position = Vector2( 335.139, 288.522 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D2"]
+shape = SubResource( 2 )
+one_way_collision = true
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="StaticBodies"]
+position = Vector2( 355.298, 233.085 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D3"]
+shape = SubResource( 3 )
+one_way_collision = true
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="StaticBodies"]
+position = Vector2( 598.462, 200.328 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D4"]
+shape = SubResource( 3 )
+one_way_collision = true
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="StaticBodies"]
+position = Vector2( 719.415, 311.201 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D5"]
+shape = SubResource( 4 )
+one_way_collision = true
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="StaticBodies"]
+position = Vector2( 719.415, 311.201 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D6"]
+position = Vector2( -139.851, 69.2957 )
+shape = SubResource( 5 )
+one_way_collision = true
+
+[node name="GoldTimer" type="Timer" parent="."]
+wait_time = 60.0

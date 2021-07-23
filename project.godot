@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "Player",
+"language": "GDScript",
+"path": "res://player/Player.gd"
+} ]
+_global_script_class_icons={
+"Player": ""
+}
+
 [application]
 
 config/name="Minijam 85 Gold"
@@ -51,7 +61,6 @@ ui_up={
 [physics]
 
 common/enable_pause_aware_picking=true
-2d/default_gravity=1500
 
 [rendering]
 
