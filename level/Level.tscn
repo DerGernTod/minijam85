@@ -15,7 +15,7 @@ extents = Vector2( 919, 31 )
 position = Vector2( 211.065, 234.621 )
 
 [node name="Ground" type="StaticBody2D" parent="."]
-position = Vector2( 526, 573 )
+position = Vector2( 945.14, 1016.17 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
 shape = SubResource( 1 )

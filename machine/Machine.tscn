@@ -4,25 +4,25 @@
 [ext_resource path="res://machine/Machine.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 105.821, 28.7898 )
+extents = Vector2( 190.042, 28.7898 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 57.9443, 14.9307 )
+extents = Vector2( 113.315, 17.8572 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 79.3629, 14.9307 )
+extents = Vector2( 169.524, 35.9598 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 137.319, 14.9307 )
+extents = Vector2( 279.168, 34.879 )
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 40.3055, 14.9307 )
+extents = Vector2( 67.0361, 37.7074 )
 
 [node name="Machine" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 9.85, 9.85 )
+scale = Vector2( 19, 19 )
 texture = ExtResource( 1 )
 centered = false
 
@@ -32,45 +32,44 @@ position = Vector2( 432.153, 472.47 )
 [node name="StaticBodies" type="Node2D" parent="."]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="StaticBodies"]
-position = Vector2( 245.685, 414.514 )
+position = Vector2( 454.988, 770.896 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D"]
 shape = SubResource( 1 )
 one_way_collision = true
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="StaticBodies"]
-position = Vector2( 335.139, 288.522 )
+position = Vector2( 649.095, 551.566 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D2"]
 shape = SubResource( 2 )
 one_way_collision = true
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="StaticBodies"]
-position = Vector2( 355.298, 233.085 )
+position = Vector2( 700.366, 452.289 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D3"]
 shape = SubResource( 3 )
 one_way_collision = true
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="StaticBodies"]
-position = Vector2( 598.462, 200.328 )
+position = Vector2( 1144.35, 398.317 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D4"]
 shape = SubResource( 3 )
 one_way_collision = true
 
 [node name="StaticBody2D5" type="StaticBody2D" parent="StaticBodies"]
-position = Vector2( 719.415, 311.201 )
+position = Vector2( 1372.78, 605.357 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D5"]
 shape = SubResource( 4 )
 one_way_collision = true
 
 [node name="StaticBody2D6" type="StaticBody2D" parent="StaticBodies"]
-position = Vector2( 719.415, 311.201 )
+position = Vector2( 1118.22, 743.95 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D6"]
-position = Vector2( -139.851, 69.2957 )
 shape = SubResource( 5 )
 one_way_collision = true
 
