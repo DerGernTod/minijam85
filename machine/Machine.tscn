@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://machine/machine_temp.png" type="Texture" id=1]
 [ext_resource path="res://machine/Machine.gd" type="Script" id=2]
+[ext_resource path="res://machine/damagable_part/DamagablePart.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 190.042, 28.7898 )
@@ -72,6 +73,9 @@ position = Vector2( 1118.22, 743.95 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D6"]
 shape = SubResource( 5 )
 one_way_collision = true
+
+[node name="DamagablePart" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1329.74, 854.926 )
 
 [node name="GoldTimer" type="Timer" parent="."]
 wait_time = 60.0

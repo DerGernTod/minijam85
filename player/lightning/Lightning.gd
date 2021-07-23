@@ -25,7 +25,8 @@ func _physics_process(delta: float) -> void:
 	var dir = global_position - prev_pos
 	var bodies = get_overlapping_bodies()
 	for body in bodies:
-		print(body.name)
+		# todo: check for enemies
+		pass
 	if dir.x > 5:
 		col_shape.position.x = init_inner_pos.x
 		sprite.position.x = init_inner_pos.x
