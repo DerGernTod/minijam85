@@ -4,11 +4,12 @@ extends RigidBody2D
 # Declare member variables here. Examples:
 # var a: int = 2
 # var b: String = "text"
-
+onready var sprite = $Sprite
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	apply_impulse(Vector2.RIGHT * 50, Vector2.UP * 500)
+	sprite.frame = randi() % sprite.frames.get_frame_count("default")
+	apply_central_impulse(Vector2.UP * 500)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta: float) -> void:
