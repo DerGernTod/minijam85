@@ -79,3 +79,4 @@ position = Vector2( 1329.74, 854.926 )
 
 [node name="GoldTimer" type="Timer" parent="."]
 wait_time = 60.0
+autostart = true
