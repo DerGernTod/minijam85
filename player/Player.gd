@@ -59,7 +59,7 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor() and Input.is_action_just_pressed("ui_select"):
 		velocity.y -= jump_power
 	if Input.is_action_just_pressed("shoot") and not lightning_active:
-		sprite.animation = "attack"
+		sprite.animation = "walk_attack"
 		_trigger_lightning()
 	if not lightning_active:
 		if abs(velocity.x) > 50:
