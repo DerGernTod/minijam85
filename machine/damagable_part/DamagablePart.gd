@@ -51,4 +51,6 @@ func _repair_started() -> void:
 	clock.set_physics_process(true)
 	sprite.frame = 0
 	clock.change_time(30.0)
+	if clock.get_current_time() >= Globals.TIMER_DURATION:
+		clock.visible = false
 

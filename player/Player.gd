@@ -30,10 +30,8 @@ func _set_can_use_repair(can_use: bool) -> void:
 
 
 func _trigger_lightning() -> void:
-	lightning.set_active(true)
 	lightning_active = true
-	yield(get_tree().create_timer(0.1), "timeout")
-	lightning.set_active(false)
+	yield(lightning.fire(), "completed")
 	lightning_active = false
 
 
@@ -65,6 +63,12 @@ func _physics_process(delta: float) -> void:
 		sprite.animation = "walk"
 	else:
 		sprite.animation = "idle"
+	if not is_on_floor():
+		if velocity.y > 5:
+			sprite.animation = "fall"
+		else:
+			sprite.animation = "jump"
+	
 	velocity.x = lerp(velocity.x, 0, delta * damping)
 	
 	if velocity.x > 4:
