@@ -7,7 +7,8 @@ onready var init_inner_pos = col_shape.position
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	set_active(false)
+	sprite.visible = false
+	set_physics_process(false)
 
 
 func look_right(right: bool) -> void:
@@ -22,9 +23,16 @@ func look_right(right: bool) -> void:
 		sprite.scale.x = -init_sprite_scale.x
 
 
-func set_active(active: bool) -> void:
-	set_physics_process(active)
-	sprite.visible = active
+func fire() -> void:
+	set_physics_process(true)
+	yield(get_tree().create_timer(0.4), "timeout")
+	sprite.visible = true
+	sprite.frame = 0
+	
+	sprite.play()
+	yield(sprite, "animation_finished")
+	sprite.visible = false
+	set_physics_process(false)
 
 
 func _physics_process(delta: float) -> void:

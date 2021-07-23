@@ -4,16 +4,19 @@ signal timeout
 
 const MAX_TIME = Globals.TIMER_DURATION
 
-var current_time = MAX_TIME
+var current_time = MAX_TIME setget ,get_current_time
 
 func _ready() -> void:
 	set_physics_process(false)
 	
-	
+
+func get_current_time() -> float:
+	return current_time
+
+
 func change_time(time: float) -> void:
 	if current_time + time >= MAX_TIME:
 		set_physics_process(false)
-		visible = false
 	current_time = clamp(current_time + time, 0, MAX_TIME)
 	# update frame even if physics process is false
 	_physics_process(0)
