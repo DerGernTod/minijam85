@@ -78,9 +78,5 @@ one_way_collision = true
 [node name="DamagablePart" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1329.74, 854.926 )
 
-[node name="GoldTimer" type="Timer" parent="."]
-wait_time = 60.0
-autostart = true
-
 [node name="Clock" parent="." instance=ExtResource( 4 )]
 position = Vector2( 833.264, 767.09 )

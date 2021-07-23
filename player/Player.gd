@@ -59,15 +59,17 @@ func _physics_process(delta: float) -> void:
 		velocity.y -= jump_power
 	if Input.is_action_just_pressed("shoot") and not lightning_active:
 		_trigger_lightning()
-	if abs(velocity.x) > 50:
-		sprite.animation = "walk"
-	else:
-		sprite.animation = "idle"
-	if not is_on_floor():
-		if velocity.y > 5:
-			sprite.animation = "fall"
+		sprite.animation = "attack"
+	if not lightning_active:
+		if abs(velocity.x) > 50:
+			sprite.animation = "walk"
 		else:
-			sprite.animation = "jump"
+			sprite.animation = "idle"
+		if not is_on_floor():
+			if velocity.y > 5:
+				sprite.animation = "fall"
+			else:
+				sprite.animation = "jump"
 	
 	velocity.x = lerp(velocity.x, 0, delta * damping)
 	
