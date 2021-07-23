@@ -32,7 +32,7 @@ func _set_can_use_repair(can_use: bool) -> void:
 func _trigger_lightning() -> void:
 	lightning.set_active(true)
 	lightning_active = true
-	yield(get_tree().create_timer(1), "timeout")
+	yield(get_tree().create_timer(0.1), "timeout")
 	lightning.set_active(false)
 	lightning_active = false
 
@@ -68,8 +68,10 @@ func _physics_process(delta: float) -> void:
 	velocity.x = lerp(velocity.x, 0, delta * damping)
 	
 	if velocity.x > 4:
+		lightning.look_right(true)
 		sprite.scale.x = init_sprite_scale.x
 	if velocity.x < -4:
+		lightning.look_right(false)
 		sprite.scale.x = -init_sprite_scale.x
 
 	velocity += gravity_vector * gravity_magnitude * GRAVITY_SCALE * delta

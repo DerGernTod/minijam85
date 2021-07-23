@@ -45,6 +45,6 @@ animations = [ {
 
 [node name="Clock" type="AnimatedSprite"]
 position = Vector2( 43.2636, 31.0899 )
-scale = Vector2( 8, 8 )
+scale = Vector2( 19, 19 )
 frames = SubResource( 13 )
 script = ExtResource( 2 )

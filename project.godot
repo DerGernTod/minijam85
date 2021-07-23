@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Area2D",
+"class": "DamagablePart",
+"language": "GDScript",
+"path": "res://machine/damagable_part/DamagablePart.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
 "path": "res://player/Player.gd"
 } ]
 _global_script_class_icons={
+"DamagablePart": "",
 "Player": ""
 }
 
