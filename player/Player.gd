@@ -31,7 +31,8 @@ func _set_can_use_repair(can_use: bool) -> void:
 
 func _trigger_lightning() -> void:
 	lightning_active = true
-	yield(lightning.fire(), "completed")
+	lightning.fire()
+	yield(sprite, "animation_finished")
 	lightning_active = false
 
 
@@ -51,6 +52,7 @@ func _physics_process(delta: float) -> void:
 	if is_repairing:
 		velocity = Vector2.ZERO
 		return
+
 	if Input.is_action_pressed("ui_right"):
 		velocity += Vector2.RIGHT * speed * delta
 	if Input.is_action_pressed("ui_left"):
@@ -58,18 +60,20 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor() and Input.is_action_just_pressed("ui_select"):
 		velocity.y -= jump_power
 	if Input.is_action_just_pressed("shoot") and not lightning_active:
+		sprite.animation = "walk_attack"
 		_trigger_lightning()
-		sprite.animation = "attack"
+
 	if not lightning_active:
-		if abs(velocity.x) > 50:
-			sprite.animation = "walk"
-		else:
-			sprite.animation = "idle"
 		if not is_on_floor():
-			if velocity.y > 5:
+			if velocity.y > 350:
 				sprite.animation = "fall"
 			else:
 				sprite.animation = "jump"
+		else:
+			if abs(velocity.x) > 50:
+				sprite.animation = "walk"
+			else:
+				sprite.animation = "idle"
 	
 	velocity.x = lerp(velocity.x, 0, delta * damping)
 	
