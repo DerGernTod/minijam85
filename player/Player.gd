@@ -38,11 +38,13 @@ func _trigger_lightning() -> void:
 
 
 func _repair() -> void:
+	sprite.animation = "repair"
 	is_repairing = true
 	emit_signal("repair_started")
 	yield(get_tree().create_timer(1), "timeout")
 	emit_signal("repair_completed")
 	is_repairing = false
+	sprite.animation = "idle"
 	
 
 func _physics_process(delta: float) -> void:
@@ -59,6 +61,10 @@ func _physics_process(delta: float) -> void:
 		velocity.y -= jump_power
 	if Input.is_action_just_pressed("shoot") and not lightning_active:
 		_trigger_lightning()
+	if abs(velocity.x) > 50:
+		sprite.animation = "walk"
+	else:
+		sprite.animation = "idle"
 	velocity.x = lerp(velocity.x, 0, delta * damping)
 	
 	if velocity.x > 4:
