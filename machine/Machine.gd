@@ -7,6 +7,7 @@ onready var gold_clock = $Clock
 
 func _ready() -> void:
 	gold_clock.connect("timeout", self, "_spawn_gold")
+	gold_clock.set_physics_process(true)
 
 
 func _spawn_gold() -> void:

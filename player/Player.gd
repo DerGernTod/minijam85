@@ -31,7 +31,8 @@ func _set_can_use_repair(can_use: bool) -> void:
 
 func _trigger_lightning() -> void:
 	lightning_active = true
-	yield(lightning.fire(), "completed")
+	lightning.fire()
+	yield(sprite, "animation_finished")
 	lightning_active = false
 
 
@@ -58,8 +59,8 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor() and Input.is_action_just_pressed("ui_select"):
 		velocity.y -= jump_power
 	if Input.is_action_just_pressed("shoot") and not lightning_active:
-		_trigger_lightning()
 		sprite.animation = "attack"
+		_trigger_lightning()
 	if not lightning_active:
 		if abs(velocity.x) > 50:
 			sprite.animation = "walk"

@@ -25,7 +25,7 @@ func look_right(right: bool) -> void:
 
 func fire() -> void:
 	set_physics_process(true)
-	yield(get_tree().create_timer(0.4), "timeout")
+	yield(get_tree().create_timer(0.5), "timeout")
 	sprite.visible = true
 	sprite.frame = 0
 	
