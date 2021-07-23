@@ -2,7 +2,7 @@ extends AnimatedSprite
 
 signal timeout
 
-const MAX_TIME = 10.0
+const MAX_TIME = Globals.TIMER_DURATION
 
 var current_time = MAX_TIME
 
