@@ -7,8 +7,8 @@ enum Direction { LEFT = -1, RIGHT = 1 }
 export(Direction) var direction
 
 func _ready() -> void:
-	_timer.wait_time = rand_range(5.0, 15.0)
 	_timer.connect("timeout", self, "_on_timer_timeout")
+	_timer.start(rand_range(5.0, 15.0))
 	
 
 func _on_timer_timeout() -> void:
@@ -16,4 +16,4 @@ func _on_timer_timeout() -> void:
 	add_child(enemy)
 	enemy.position = Vector2.ZERO
 	enemy.set_direction(direction)
-	_timer.wait_time = rand_range(5.0, 15.0)
+	_timer.start(rand_range(5.0, 15.0))

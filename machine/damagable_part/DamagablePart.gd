@@ -8,6 +8,7 @@ onready var clock = $Clock
 onready var sprite = $AnimatedSprite
 
 var player_body: Player = null
+var enemies = [];
 
 func _ready() -> void:
 	connect("body_entered", self, "_body_entered")
@@ -33,13 +34,20 @@ func _clock_timed_out() -> void:
 	
 	sprite.frame = 2
 	emit_signal("destroyed")
+	for enemy in enemies:
+		enemy.part_destroyed()
 
 
 func _body_entered(body: Node) -> void:
 	if body is Player:
 		body.connect("repair_started", self, "_repair_started")
-		body.can_use_repair = true
+		if sprite.frame != 0:
+			body.can_use_repair = true
 		player_body = body
+	if body is Enemy and sprite.frame != 2:
+		enemies.append(body)
+		body.connect("dealt_damage", self, "apply_damage")
+		body.part_reached()
 
 
 func _body_exited(body: Node) -> void:
@@ -47,12 +55,13 @@ func _body_exited(body: Node) -> void:
 		body.disconnect("repair_started", self, "_repair_started")
 		body.can_use_repair = false
 		player_body = null
+	if body is Enemy:
+		body.disconnect("dealt_damage", self, "apply_damage")
+		enemies.remove(enemies.find(body))
 
 
 func _repair_started() -> void:
 	clock.set_physics_process(false)
-	print("part repair started")
-	# do repair stuff
 	yield(player_body, "repair_completed")
 	clock.set_physics_process(true)
 	

@@ -24,7 +24,7 @@ position = Vector2( 0, -45 )
 scale = Vector2( 6, 6 )
 frames = ExtResource( 1 )
 animation = "repair"
-frame = 13
+frame = 3
 playing = true
 
 [node name="Lightning" parent="." instance=ExtResource( 3 )]

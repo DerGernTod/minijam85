@@ -8,13 +8,16 @@ radius = 31.5386
 height = 35.9604
 
 [node name="Enemy" type="KinematicBody2D"]
+collision_layer = 4
+collision_mask = 3
 script = ExtResource( 2 )
+speed = 4500
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 6, 6 )
 frames = ExtResource( 1 )
 animation = "walk"
-frame = 3
+frame = 5
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
