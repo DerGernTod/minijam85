@@ -1,0 +1,201 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://fonts/FreePixelFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://fonts/FreePixel.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://level/GameOver.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 196
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 64
+font_data = ExtResource( 2 )
+
+[node name="GameOverScreen" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.301961, 0.301961, 0.301961, 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 1915.0
+margin_bottom = 1075.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer"]
+margin_left = 425.0
+margin_top = 35.0
+margin_right = 1485.0
+margin_bottom = 1035.0
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/CenterContainer/VBoxContainer"]
+margin_right = 1060.0
+margin_bottom = 296.0
+custom_constants/margin_right = 50
+custom_constants/margin_top = 50
+custom_constants/margin_left = 50
+custom_constants/margin_bottom = 50
+
+[node name="Title" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/MarginContainer"]
+margin_left = 50.0
+margin_top = 50.0
+margin_right = 1010.0
+margin_bottom = 246.0
+size_flags_horizontal = 3
+size_flags_vertical = 7
+custom_fonts/font = SubResource( 1 )
+text = "Game Over"
+align = 1
+
+[node name="GoldCollected" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer"]
+margin_top = 300.0
+margin_right = 1060.0
+margin_bottom = 396.0
+
+[node name="GoldAmountLabel" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/GoldCollected"]
+margin_right = 720.0
+margin_bottom = 96.0
+custom_fonts/font = ExtResource( 1 )
+text = "Gold collected:"
+
+[node name="GoldAmount" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/GoldCollected"]
+margin_left = 724.0
+margin_right = 1060.0
+margin_bottom = 96.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "0"
+align = 2
+
+[node name="GoldLost" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer"]
+margin_top = 400.0
+margin_right = 1060.0
+margin_bottom = 496.0
+
+[node name="GoldLostAmountLabel" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/GoldLost"]
+margin_right = 480.0
+margin_bottom = 96.0
+custom_fonts/font = ExtResource( 1 )
+text = "Gold lost:"
+
+[node name="GoldLostAmount" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/GoldLost"]
+margin_left = 484.0
+margin_right = 1060.0
+margin_bottom = 96.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "0"
+align = 2
+
+[node name="EnemiesBubbled" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer"]
+margin_top = 500.0
+margin_right = 1060.0
+margin_bottom = 596.0
+
+[node name="EnemiesBubbledAmountLabel" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/EnemiesBubbled"]
+margin_right = 768.0
+margin_bottom = 96.0
+custom_fonts/font = ExtResource( 1 )
+text = "Enemies bubbled:"
+
+[node name="EnemiesBubbledAmount" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/EnemiesBubbled"]
+margin_left = 772.0
+margin_right = 1060.0
+margin_bottom = 96.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "0"
+align = 2
+
+[node name="EnemiesBurned" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer"]
+margin_top = 600.0
+margin_right = 1060.0
+margin_bottom = 696.0
+
+[node name="EnemiesBurnedAmountLabel" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/EnemiesBurned"]
+margin_right = 720.0
+margin_bottom = 96.0
+custom_fonts/font = ExtResource( 1 )
+text = "Enemies burned:"
+
+[node name="EnemiesBurnedAmount" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/EnemiesBurned"]
+margin_left = 724.0
+margin_right = 1060.0
+margin_bottom = 96.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "0"
+align = 2
+
+[node name="EnemiesElectrocuted" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer"]
+margin_top = 700.0
+margin_right = 1060.0
+margin_bottom = 796.0
+
+[node name="EnemiesElectrocutedAmountLabel" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/EnemiesElectrocuted"]
+margin_right = 1008.0
+margin_bottom = 96.0
+custom_fonts/font = ExtResource( 1 )
+text = "Enemies electrocuted:"
+
+[node name="EnemiesElectrocutedAmount" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/EnemiesElectrocuted"]
+margin_left = 1012.0
+margin_right = 1060.0
+margin_bottom = 96.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 1 )
+text = "0"
+align = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/CenterContainer/VBoxContainer"]
+margin_top = 800.0
+margin_right = 1060.0
+margin_bottom = 1000.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 50
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer/MarginContainer2"]
+margin_left = 20.0
+margin_top = 50.0
+margin_right = 1040.0
+margin_bottom = 150.0
+alignment = 1
+
+[node name="Leave" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
+margin_right = 300.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 300, 100 )
+size_flags_horizontal = 8
+size_flags_vertical = 10
+custom_fonts/font = SubResource( 2 )
+text = "Leave"
+
+[node name="Play" type="Button" parent="MarginContainer/CenterContainer/VBoxContainer/MarginContainer2/HBoxContainer"]
+margin_left = 720.0
+margin_right = 1020.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 300, 100 )
+size_flags_horizontal = 10
+size_flags_vertical = 10
+custom_fonts/font = SubResource( 2 )
+text = "Play"
+
+[connection signal="button_up" from="MarginContainer/CenterContainer/VBoxContainer/MarginContainer2/HBoxContainer/Leave" to="." method="_on_Leave_button_up"]
+[connection signal="button_up" from="MarginContainer/CenterContainer/VBoxContainer/MarginContainer2/HBoxContainer/Play" to="." method="_on_Play_button_up"]

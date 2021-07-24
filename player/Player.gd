@@ -1,7 +1,31 @@
 extends KinematicBody2D
 class_name Player
 
-const GRAVITY_SCALE = Globals.DEFAULT_GRAVITY_SCALE
+const CONTROL_SCHEMES = {
+	"default": {
+		"left": "ui_left",
+		"right": "ui_right",
+		"jump": "ui_select",
+		"drop": "ui_down",
+		"shoot": "shoot",
+		"interact": "interact",
+	},
+	"reversed_directions": {
+		"left": "ui_right",
+		"right": "ui_left",
+		"jump": "ui_select",
+		"drop": "ui_down",
+		"shoot": "shoot",
+		"interact": "interact",},
+	"scrambled": {
+		"left": "ui_right",
+		"right": "ui_left",
+		"jump": "ui_down",
+		"drop": "ui_select",
+		"shoot": "interact",
+		"interact": "shoot",
+	},
+}
 
 signal repair_started
 signal repair_completed
@@ -22,6 +46,15 @@ var lightning_active := false
 var can_use_repair = false setget _set_can_use_repair
 var is_repairing = false
 var _is_dropping = false
+var _gravity_scale = Globals.DEFAULT_GRAVITY_SCALE setget set_gravity_scale
+var _control_scheme = "default" setget set_control_scheme
+
+func set_gravity_scale(g_scale: float) -> void:
+	_gravity_scale = g_scale
+
+
+func set_control_scheme(scheme: String) -> void:
+	_control_scheme = scheme
 
 func _ready() -> void:
 	pass
@@ -58,26 +91,30 @@ func _drop_down() -> void:
 	_is_dropping = false
 
 
+func _control(val: String) -> String:
+	return CONTROL_SCHEMES[_control_scheme][val]
+
+
 func _physics_process(delta: float) -> void:
-	if can_use_repair and is_on_floor() and Input.is_action_just_pressed("interact"):
+	if can_use_repair and is_on_floor() and Input.is_action_just_pressed(_control("interact")):
 		_repair()
 	if is_repairing:
 		velocity = Vector2.ZERO
 		return
 
-	if Input.is_action_pressed("ui_right"):
+	if Input.is_action_pressed(_control("right")):
 		velocity += Vector2.RIGHT * speed * delta
-	if Input.is_action_pressed("ui_left"):
+	if Input.is_action_pressed(_control("left")):
 		velocity += Vector2.LEFT * speed * delta
-	if is_on_floor() and Input.is_action_just_pressed("ui_select"):
+	if is_on_floor() and Input.is_action_just_pressed(_control("jump")):
 		velocity.y -= jump_power
-	if Input.is_action_just_pressed("shoot") and not lightning_active:
-		if Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_left"):
+	if Input.is_action_just_pressed(_control("shoot")) and not lightning_active:
+		if Input.is_action_pressed(_control("right")) or Input.is_action_pressed(_control("left")):
 			sprite.animation = "walk_attack"
 		else:
 			sprite.animation = "attack"
 		_trigger_lightning()
-	if Input.is_action_just_pressed("ui_down") and position.y < 900:
+	if Input.is_action_just_pressed(_control("drop")) and position.y < 900:
 		_drop_down()
 
 	if not lightning_active:
@@ -101,7 +138,7 @@ func _physics_process(delta: float) -> void:
 		lightning.look_right(false)
 		sprite.scale.x = -init_sprite_scale.x
 
-	velocity += gravity_vector * gravity_magnitude * GRAVITY_SCALE * delta
+	velocity += gravity_vector * gravity_magnitude * _gravity_scale * delta
 	velocity = move_and_slide(velocity, Vector2.UP)
 
 func collect_gold() -> void:
