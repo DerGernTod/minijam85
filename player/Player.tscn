@@ -14,16 +14,16 @@ speed = 5500.0
 damping = 10.5
 jump_power = 900.0
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
 [node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -45 )
 scale = Vector2( 6, 6 )
 frames = ExtResource( 1 )
-animation = "jump"
-frame = 4
+animation = "repair"
+frame = 28
 playing = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
 
 [node name="Lightning" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, 11.6673 )

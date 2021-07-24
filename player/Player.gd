@@ -40,7 +40,7 @@ func _repair() -> void:
 	sprite.animation = "repair"
 	is_repairing = true
 	emit_signal("repair_started")
-	yield(get_tree().create_timer(1), "timeout")
+	yield(sprite, "animation_finished")
 	emit_signal("repair_completed")
 	is_repairing = false
 	sprite.animation = "idle"
