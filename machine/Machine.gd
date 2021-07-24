@@ -1,10 +1,13 @@
 extends Node2D
 
 signal part_destroyed
+signal all_parts_destroyed
 
 onready var gold_spawn_location = $GoldSpawnLocation
 onready var gold_scene = preload("res://gold/Gold.tscn")
 onready var gold_clock = $Clock
+
+var num_living_parts = 0
 
 
 func _ready() -> void:
@@ -12,7 +15,9 @@ func _ready() -> void:
 	gold_clock.set_physics_process(true)
 	for part in get_children():
 		if part is DamagablePart:
+			num_living_parts += 1
 			part.connect("destroyed", self, "_on_part_destroyed")
+			part.connect("repaired", self, "_on_part_repaired")
 
 
 func _spawn_gold() -> void:
@@ -24,4 +29,13 @@ func _spawn_gold() -> void:
 
 
 func _on_part_destroyed() -> void:
+	num_living_parts -= 1
 	emit_signal("part_destroyed")
+	
+	if num_living_parts <= 0:
+		print("all parts destroyed")
+		emit_signal("all_parts_destroyed")
+
+
+func _on_part_repaired() -> void:
+	num_living_parts += 1

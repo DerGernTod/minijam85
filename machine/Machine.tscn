@@ -78,5 +78,8 @@ one_way_collision = true
 [node name="DamagablePart" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1329.74, 854.926 )
 
+[node name="DamagablePart2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 700.765, 291.878 )
+
 [node name="Clock" parent="." instance=ExtResource( 4 )]
 position = Vector2( 833.264, 767.09 )

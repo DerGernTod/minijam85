@@ -2,6 +2,7 @@ extends Area2D
 class_name DamagablePart
 
 signal destroyed
+signal repaired
 
 onready var clock = $Clock
 onready var sprite = $AnimatedSprite
@@ -27,6 +28,9 @@ func apply_damage() -> void:
 
 
 func _clock_timed_out() -> void:
+	if sprite.frame == 2:
+		return
+	
 	sprite.frame = 2
 	emit_signal("destroyed")
 
@@ -51,7 +55,12 @@ func _repair_started() -> void:
 	# do repair stuff
 	yield(player_body, "repair_completed")
 	clock.set_physics_process(true)
+	
+	if sprite.frame == 2:
+		emit_signal("repaired")
+	
 	sprite.frame = 0
+	
 	clock.change_time(30.0)
 	if clock.get_current_time() >= Globals.TIMER_DURATION:
 		clock.visible = false
