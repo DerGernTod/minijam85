@@ -1,7 +1,7 @@
 extends KinematicBody2D
 class_name Player
 
-const GRAVITY_SCALE = 15.0
+const GRAVITY_SCALE = Globals.DEFAULT_GRAVITY_SCALE
 
 signal repair_started
 signal repair_completed

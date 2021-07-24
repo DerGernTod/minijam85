@@ -1,3 +1,7 @@
 extends Node
 
 const TIMER_DURATION = 10.0
+
+const DEFAULT_GRAVITY_SCALE = 15.0
+const DEFAULT_PLAYER_SIZE = 1.0
+const DEFAULT_ENEMY_SIZE = 1.0
