@@ -10,17 +10,20 @@ const STATES = {
 	"move": {
 		"update": "_update_state_move",
 		"part_reached": "_part_reached_state_move",
-		"part_destroyed": "_noop",
+		"part_destroyed": "",
+		"gold_collected": "_gold_collected_state_move",
 	},
 	"attack": {
 		"update": "_update_state_attack",
-		"part_reached": "_noop",
+		"part_reached": "",
 		"part_destroyed": "_part_destroyed_state_attack",
+		"gold_collected": "",
 	},
 	"die": {
-		"update": "_noop_arg",
-		"part_reached": "_noop",
-		"part_destroyed": "_noop",
+		"update": "",
+		"part_reached": "",
+		"part_destroyed": "",
+		"gold_collected": "",
 	},
 }
 
@@ -29,6 +32,8 @@ export var damping := 10.5
 
 onready var gravity_vector : Vector2 = ProjectSettings.get_setting("physics/2d/default_gravity_vector")
 onready var gravity_magnitude : int = ProjectSettings.get_setting("physics/2d/default_gravity")
+onready var _sprite = $AnimatedSprite
+onready var _init_sprite_scale = _sprite.scale
 
 var _direction = 0
 var _velocity = Vector2.ZERO
@@ -38,14 +43,32 @@ var _cur_state = STATES.move
 
 func set_direction(dir: int) -> void:
 	_direction = dir
+	_sprite.scale.x = _init_sprite_scale.x * dir
 
 
 func part_reached() -> void:
-	call(_cur_state.part_reached)
+	if has_method(_cur_state.part_reached):
+		call(_cur_state.part_reached)
 
 
 func part_destroyed() -> void:
-	call(_cur_state.part_destroyed)
+	if has_method(_cur_state.part_destroyed):
+		call(_cur_state.part_destroyed)
+
+
+func collect_gold() -> void:
+	if has_method(_cur_state.gold_collected):
+		call(_cur_state.gold_collected)
+	
+
+func kill(death_type: String) -> void:
+	if _cur_state == STATES.die:
+		return
+	emit_signal("died", self)
+	_cur_state = STATES.die
+	# play and wait for death animation
+	yield(get_tree().create_timer(1.0), "timeout")
+	queue_free()
 
 
 func _noop() -> void:
@@ -60,16 +83,6 @@ func _ready() -> void:
 	pass
 
 
-func kill(death_type: String) -> void:
-	if _cur_state == STATES.die:
-		return
-	emit_signal("died", self)
-	_cur_state = STATES.die
-	# play and wait for death animation
-	yield(get_tree().create_timer(1.0), "timeout")
-	queue_free()
-
-
 func _physics_process(delta: float) -> void:
 	call(_cur_state.update, delta)
 	_velocity.x = lerp(_velocity.x, 0, delta * damping)
@@ -77,7 +90,8 @@ func _physics_process(delta: float) -> void:
 
 
 func _update_state_move(delta: float) -> void:
-	_velocity.x += speed * delta * _direction
+	if is_on_floor():
+		_velocity.x += speed * delta * _direction
 	_velocity += gravity_vector * gravity_magnitude * GRAVITY_SCALE * delta
 
 
@@ -87,6 +101,16 @@ func _part_reached_state_move() -> void:
 	# let them run a bit more before stopping on the border of the damagable
 	yield(get_tree().create_timer(0.5), "timeout")
 	_cur_state = STATES.attack
+
+
+func _gold_collected_state_move() -> void:
+	var prev_dir = _direction
+	_direction = 0
+	_action_done = true
+	collision_mask = collision_mask ^ 8
+	# wait for yay! animation
+	yield(get_tree().create_timer(1), "timeout")
+	_direction = prev_dir
 
 
 func _update_state_attack(delta: float) -> void:

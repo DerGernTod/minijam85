@@ -18,7 +18,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	var cols = get_colliding_bodies()
 	for col in cols:
-		if col is Player:
+		if col is Player or col is Enemy:
 			col.collect_gold()
 			queue_free()
 	
