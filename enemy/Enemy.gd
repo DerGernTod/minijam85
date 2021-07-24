@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+var _direction = 0
+
 const STATES = {
 	"move_to_target": {
 		"update": "_update_state_move_to_target",
@@ -28,7 +30,5 @@ func _complete_state_manipulate_machine() -> void:
 	# search new target, then switch state
 	cur_state = STATES.move_to_target.update
 
-
-func _ready() -> void:
-	# chose one of tree's enemy paths
-	pass
+func set_direction(dir: int) -> void:
+	_direction = dir
