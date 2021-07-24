@@ -16,6 +16,8 @@ func _ready() -> void:
 
 
 func apply_damage() -> void:
+	if sprite.frame == 2:
+		return
 	sprite.frame = max(sprite.frame, 1)
 	clock.change_time(-1)
 	clock.visible = true

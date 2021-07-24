@@ -30,12 +30,16 @@ func fire() -> void:
 	sprite.frame = 0
 	
 	sprite.play()
+	
+	yield(get_tree().create_timer(0.15), "timeout")
+	_apply_damage()
+	
 	yield(sprite, "animation_finished")
 	sprite.visible = false
 	set_physics_process(false)
 
 
-func _physics_process(delta: float) -> void:
+func _apply_damage() -> void:
 	var bodies = get_overlapping_bodies()
 	var areas = get_overlapping_areas()
 	for body in bodies:

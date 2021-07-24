@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://gold_bar/nuggets.png" type="Texture" id=1]
-[ext_resource path="res://gold_bar/GoldBar.gd" type="Script" id=2]
+[ext_resource path="res://gold/nuggets.png" type="Texture" id=1]
+[ext_resource path="res://gold/Gold.gd" type="Script" id=2]
 
-[sub_resource type="CapsuleShape2D" id=6]
+[sub_resource type="CapsuleShape2D" id=1]
 radius = 17.1646
 height = 13.1179
 
@@ -36,7 +36,7 @@ script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
-shape = SubResource( 6 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 self_modulate = Color( 1, 0.980392, 0.509804, 1 )

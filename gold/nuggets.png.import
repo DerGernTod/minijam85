@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/nuggets.png-b44abdfa02aa0904a3ab2c5726e5a252.stex"
+path="res://.import/nuggets.png-3c7b9c2d345c0ac29fc1ca4d9087c407.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gold_bar/nuggets.png"
-dest_files=[ "res://.import/nuggets.png-b44abdfa02aa0904a3ab2c5726e5a252.stex" ]
+source_file="res://gold/nuggets.png"
+dest_files=[ "res://.import/nuggets.png-3c7b9c2d345c0ac29fc1ca4d9087c407.stex" ]
 
 [params]
 
