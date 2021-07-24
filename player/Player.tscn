@@ -10,21 +10,21 @@ height = 40.8133
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
-collision_mask = 3
+collision_mask = 11
 script = ExtResource( 2 )
 speed = 5500.0
 damping = 10.5
 jump_power = 900.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 3, 0.9 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -45 )
 scale = Vector2( 6, 6 )
 frames = ExtResource( 1 )
-animation = "repair"
-frame = 3
+animation = "idle"
 playing = true
 
 [node name="Lightning" parent="." instance=ExtResource( 3 )]

@@ -29,6 +29,8 @@ animations = [ {
 
 [node name="GoldBar" type="RigidBody2D"]
 position = Vector2( 531.899, 292.17 )
+collision_layer = 8
+collision_mask = 9
 gravity_scale = 10.0
 contacts_reported = 20
 contact_monitor = true

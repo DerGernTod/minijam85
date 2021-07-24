@@ -41,21 +41,21 @@ shape = SubResource( 1 )
 one_way_collision = true
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="StaticBodies"]
-position = Vector2( 649.095, 551.566 )
+position = Vector2( 649.095, 550 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D2"]
 shape = SubResource( 2 )
 one_way_collision = true
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="StaticBodies"]
-position = Vector2( 256.366, 452.289 )
+position = Vector2( 256.366, 454.289 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D3"]
 shape = SubResource( 3 )
 one_way_collision = true
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="StaticBodies"]
-position = Vector2( 1580.35, 398.317 )
+position = Vector2( 1580.35, 397 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D4"]
 shape = SubResource( 3 )
@@ -69,7 +69,7 @@ shape = SubResource( 4 )
 one_way_collision = true
 
 [node name="StaticBody2D6" type="StaticBody2D" parent="StaticBodies"]
-position = Vector2( 1118.22, 743.95 )
+position = Vector2( 1118.22, 741 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D6"]
 shape = SubResource( 5 )
