@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://machine/Machine.tscn" type="PackedScene" id=3]
+[ext_resource path="res://level/Spawner.tscn" type="PackedScene" id=4]
 [ext_resource path="res://level/Level.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -15,10 +16,10 @@ script = ExtResource( 5 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 211.065, 234.621 )
-collision_layer = 3
 
 [node name="Ground" type="StaticBody2D" parent="."]
 position = Vector2( 945.14, 1016.17 )
+collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
 shape = SubResource( 1 )
@@ -26,5 +27,9 @@ shape = SubResource( 1 )
 [node name="Sprite" type="Sprite" parent="Ground"]
 scale = Vector2( 28.68, 1 )
 texture = ExtResource( 2 )
+
+[node name="Spawner" parent="." instance=ExtResource( 4 )]
+position = Vector2( 59.33, 305.125 )
+direction = 1
 
 [connection signal="part_destroyed" from="Machine" to="." method="_on_Machine_part_destroyed"]

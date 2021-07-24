@@ -11,6 +11,7 @@ onready var gravity_magnitude : int = ProjectSettings.get_setting("physics/2d/de
 onready var sprite = $Sprite
 onready var lightning = $Lightning
 onready var init_sprite_scale = sprite.scale
+onready var _init_layers = collision_mask
 
 export var speed := 10.0
 export var damping := 1.0
@@ -20,6 +21,7 @@ var velocity := Vector2.ZERO
 var lightning_active := false
 var can_use_repair = false setget _set_can_use_repair
 var is_repairing = false
+var _is_dropping = false
 
 func _ready() -> void:
 	pass
@@ -40,11 +42,21 @@ func _repair() -> void:
 	sprite.animation = "repair"
 	is_repairing = true
 	emit_signal("repair_started")
-	yield(get_tree().create_timer(1), "timeout")
+	yield(sprite, "animation_finished")
 	emit_signal("repair_completed")
 	is_repairing = false
 	sprite.animation = "idle"
-	
+
+
+func _drop_down() -> void:
+	if _is_dropping:
+		return
+	_is_dropping = true
+	collision_mask = collision_mask - 1
+	yield(get_tree().create_timer(0.5), "timeout")
+	collision_mask = collision_mask + 1
+	_is_dropping = false
+
 
 func _physics_process(delta: float) -> void:
 	if can_use_repair and is_on_floor() and Input.is_action_just_pressed("interact"):
@@ -65,6 +77,8 @@ func _physics_process(delta: float) -> void:
 		else:
 			sprite.animation = "attack"
 		_trigger_lightning()
+	if Input.is_action_just_pressed("ui_down") and position.y < 900:
+		_drop_down()
 
 	if not lightning_active:
 		if not is_on_floor():

@@ -6,16 +6,16 @@
 [ext_resource path="res://clock/Clock.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 190.042, 28.7898 )
+extents = Vector2( 406.462, 28.7898 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 113.315, 17.8572 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 169.524, 35.9598 )
+extents = Vector2( 597.1, 35.9598 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 279.168, 34.879 )
+extents = Vector2( 666.67, 34.879 )
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 67.0361, 37.7074 )
@@ -34,7 +34,7 @@ position = Vector2( 842.153, 926.47 )
 [node name="StaticBodies" type="Node2D" parent="."]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="StaticBodies"]
-position = Vector2( 454.988, 770.896 )
+position = Vector2( 268.988, 770.896 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D"]
 shape = SubResource( 1 )
@@ -48,21 +48,21 @@ shape = SubResource( 2 )
 one_way_collision = true
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="StaticBodies"]
-position = Vector2( 700.366, 452.289 )
+position = Vector2( 256.366, 452.289 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D3"]
 shape = SubResource( 3 )
 one_way_collision = true
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="StaticBodies"]
-position = Vector2( 1144.35, 398.317 )
+position = Vector2( 1580.35, 398.317 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D4"]
 shape = SubResource( 3 )
 one_way_collision = true
 
 [node name="StaticBody2D5" type="StaticBody2D" parent="StaticBodies"]
-position = Vector2( 1372.78, 605.357 )
+position = Vector2( 1786.78, 605.357 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D5"]
 shape = SubResource( 4 )
