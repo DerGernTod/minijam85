@@ -7,6 +7,7 @@
 extents = Vector2( 35.4955, 29.965 )
 
 [node name="Lightning" type="Area2D"]
+collision_mask = 7
 script = ExtResource( 2 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]

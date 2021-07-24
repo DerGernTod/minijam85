@@ -2,6 +2,7 @@ extends KinematicBody2D
 class_name Enemy
 
 signal dealt_damage
+signal died
 
 const ATTACK_TIME = 5.0
 const GRAVITY_SCALE = Globals.DEFAULT_GRAVITY_SCALE
@@ -15,6 +16,11 @@ const STATES = {
 		"update": "_update_state_attack",
 		"part_reached": "_noop",
 		"part_destroyed": "_part_destroyed_state_attack",
+	},
+	"die": {
+		"update": "_noop_arg",
+		"part_reached": "_noop",
+		"part_destroyed": "_noop",
 	},
 }
 
@@ -46,8 +52,22 @@ func _noop() -> void:
 	pass
 
 
+func _noop_arg(delta: float) -> void:
+	pass
+
+
 func _ready() -> void:
 	pass
+
+
+func kill(death_type: String) -> void:
+	if _cur_state == STATES.die:
+		return
+	emit_signal("died", self)
+	_cur_state = STATES.die
+	# play and wait for death animation
+	yield(get_tree().create_timer(1.0), "timeout")
+	queue_free()
 
 
 func _physics_process(delta: float) -> void:

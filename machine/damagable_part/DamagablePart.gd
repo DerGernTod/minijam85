@@ -47,7 +47,12 @@ func _body_entered(body: Node) -> void:
 	if body is Enemy and sprite.frame != 2:
 		enemies.append(body)
 		body.connect("dealt_damage", self, "apply_damage")
+		body.connect("died", self, "_remove_enemy")
 		body.part_reached()
+
+
+func _remove_enemy(enemy: Enemy) -> void:
+	enemies.remove(enemies.find(enemy))
 
 
 func _body_exited(body: Node) -> void:
@@ -57,7 +62,7 @@ func _body_exited(body: Node) -> void:
 		player_body = null
 	if body is Enemy:
 		body.disconnect("dealt_damage", self, "apply_damage")
-		enemies.remove(enemies.find(body))
+		_remove_enemy(body)
 
 
 func _repair_started() -> void:
