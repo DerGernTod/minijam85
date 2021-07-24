@@ -1,11 +1,14 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://player/PlayerSpriteFrames.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://enemy/Enemy.gd" type="Script" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 31.5386
 height = 35.9604
+
+[sub_resource type="AnimationNodeStateMachine" id=2]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
 
 [node name="Enemy" type="KinematicBody2D"]
 collision_layer = 4
@@ -13,13 +16,17 @@ collision_mask = 3
 script = ExtResource( 2 )
 speed = 4500
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="AnimatedSprite" type="Sprite" parent="."]
 scale = Vector2( 6, 6 )
-frames = ExtResource( 1 )
-animation = "walk"
-frame = 5
-playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 2.82843, 42.78 )
 shape = SubResource( 1 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 2 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
