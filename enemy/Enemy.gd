@@ -32,8 +32,9 @@ export var damping := 10.5
 
 onready var gravity_vector : Vector2 = ProjectSettings.get_setting("physics/2d/default_gravity_vector")
 onready var gravity_magnitude : int = ProjectSettings.get_setting("physics/2d/default_gravity")
-onready var _sprite = $AnimatedSprite
+onready var _sprite = $Sprite
 onready var _init_sprite_scale = _sprite.scale
+onready var _state_machine: AnimationNodeStateMachinePlayback = $AnimationTree.get("parameters/playback")
 
 var _direction = 0
 var _velocity = Vector2.ZERO
@@ -100,6 +101,7 @@ func _part_reached_state_move() -> void:
 		return
 	# let them run a bit more before stopping on the border of the damagable
 	yield(get_tree().create_timer(0.5), "timeout")
+	_state_machine.travel("attack")
 	_cur_state = STATES.attack
 
 
@@ -121,7 +123,8 @@ func _update_state_attack(delta: float) -> void:
 
 	
 func _part_destroyed_state_attack() -> void:
-	_action_done = true;
+	_action_done = true
+	_state_machine.travel("walk")
 	_cur_state = STATES.move
 
 
