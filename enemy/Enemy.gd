@@ -20,7 +20,7 @@ const STATES = {
 		"gold_collected": "",
 	},
 	"die": {
-		"update": "",
+		"update": "_noop_arg",
 		"part_reached": "",
 		"part_destroyed": "",
 		"gold_collected": "",

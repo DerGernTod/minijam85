@@ -23,6 +23,9 @@ const EFFECTS = {
 	"controls": ["default", "reversed_directions", "scrambled"],
 }
 
+onready var _player = $Player
+onready var _game_over = $CanvasLayer/GameOverScreen
+
 var cur_effects = {
 	"player_gravity_scale": Globals.DEFAULT_GRAVITY_SCALE,
 	"weapon": "lightning",
@@ -32,15 +35,8 @@ var cur_effects = {
 	"controls": "default",
 }
 
-onready var player = $Player
-
-
 func _ready() -> void:
 	pass
-
-
-#func _process(delta: float) -> void:
-#	pass
 
 
 func _on_Machine_part_destroyed():
@@ -59,6 +55,7 @@ func _on_Machine_part_destroyed():
 
 
 func change_player_gravity_scale(gravity_scale: float) -> void:
+	_player.set_gravity_scale(gravity_scale)
 	print("changing gravity scale to: %s" % gravity_scale)
 
 
@@ -67,12 +64,22 @@ func change_weapon(weapon: String) -> void:
 
 
 func change_player_size(player_size: float) -> void:
+	_player.scale = Vector2.ONE * player_size
 	print("changing player size to: %s" % player_size)
 
 
 func change_enemy_size(enemy_size: float) -> void:
+	for enemy in get_tree().get_nodes_in_group("Enemies"):
+		enemy.scale = Vector2.ONE * enemy_size
+	for spawner in get_tree().get_nodes_in_group("Spawners"):
+		spawner.set_spawn_scale(enemy_size)
 	print("changing enemy size to: %s" % enemy_size)
 
 
 func change_controls(controls: String) -> void:
+	_player.set_control_scheme(controls)
 	print("changing controls to: %s" % controls)
+
+
+func _on_Machine_all_parts_destroyed() -> void:
+	_game_over.show()

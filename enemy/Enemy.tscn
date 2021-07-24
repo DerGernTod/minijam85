@@ -58,7 +58,9 @@ start_node = "enemy_walk"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=3]
 
-[node name="Enemy" type="KinematicBody2D"]
+[node name="Enemy" type="KinematicBody2D" groups=[
+"Enemies",
+]]
 collision_layer = 4
 collision_mask = 11
 script = ExtResource( 2 )
@@ -68,7 +70,7 @@ speed = 4500
 scale = Vector2( 6, 6 )
 frames = SubResource( 12 )
 animation = "enemy_walk"
-frame = 5
+frame = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 2.47488, 46.3762 )
