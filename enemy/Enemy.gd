@@ -4,7 +4,7 @@ class_name Enemy
 signal dealt_damage
 signal died
 
-const ATTACK_TIME = 5.0
+const ATTACK_TIME = 3.0
 const GRAVITY_SCALE = Globals.DEFAULT_GRAVITY_SCALE
 const STATES = {
 	"move": {
@@ -65,6 +65,7 @@ func collect_gold() -> void:
 func kill(death_type: String) -> void:
 	if _cur_state == STATES.die:
 		return
+	_state_machine.travel("death_%s" % death_type)
 	emit_signal("died", self)
 	_cur_state = STATES.die
 	# play and wait for death animation
