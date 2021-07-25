@@ -164,7 +164,6 @@ size_flags_vertical = 3
 custom_colors/default_color = Color( 0, 0, 0, 1 )
 
 [node name="GameOverScreen" parent="CanvasLayer" instance=ExtResource( 7 )]
-visible = false
 
 [node name="Tween" type="Tween" parent="."]
 
