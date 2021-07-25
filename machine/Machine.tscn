@@ -315,7 +315,7 @@ shape = SubResource( 13 )
 
 [node name="WorkingSprite" parent="DamagablePart" index="1"]
 frames = SubResource( 20 )
-frame = 1
+frame = 3
 
 [node name="Clock" parent="DamagablePart" index="2"]
 margin_top = -293.0
@@ -326,7 +326,7 @@ texture = ExtResource( 6 )
 
 [node name="BrokenSmoke" parent="DamagablePart/BrokenSprite" index="1"]
 position = Vector2( 40.6429, -236.057 )
-frame = 0
+frame = 3
 
 [node name="DamagablePart2" parent="." instance=ExtResource( 3 )]
 position = Vector2( 379, 462 )
@@ -340,7 +340,7 @@ shape = SubResource( 21 )
 
 [node name="WorkingSprite" parent="DamagablePart3" index="1"]
 frames = SubResource( 30 )
-frame = 7
+frame = 3
 
 [node name="Clock" parent="DamagablePart3" index="2"]
 margin_left = -39.0
@@ -353,7 +353,7 @@ texture = ExtResource( 7 )
 
 [node name="BrokenSmoke" parent="DamagablePart3/BrokenSprite" index="1"]
 position = Vector2( 40.0524, -257.739 )
-frame = 0
+frame = 3
 
 [node name="DamagablePart4" parent="." instance=ExtResource( 3 )]
 position = Vector2( 1506, -18 )
@@ -365,7 +365,7 @@ shape = SubResource( 31 )
 [node name="WorkingSprite" parent="DamagablePart4" index="1"]
 position = Vector2( 0, -96 )
 frames = SubResource( 36 )
-frame = 2
+frame = 3
 
 [node name="Clock" parent="DamagablePart4" index="2"]
 margin_top = -261.0
@@ -377,7 +377,7 @@ texture = ExtResource( 10 )
 
 [node name="BrokenSmoke" parent="DamagablePart4/BrokenSprite" index="1"]
 position = Vector2( 69.8743, -235.425 )
-frame = 0
+frame = 3
 
 [node name="DamagablePart5" parent="." instance=ExtResource( 3 )]
 position = Vector2( 883, -612 )
@@ -389,11 +389,11 @@ shape = SubResource( 37 )
 [node name="WorkingSprite" parent="DamagablePart5" index="1"]
 position = Vector2( 0, -96 )
 frames = SubResource( 44 )
-frame = 3
+frame = 1
 
 [node name="Clock" parent="DamagablePart5" index="2"]
-margin_top = -241.0
-margin_bottom = -177.0
+margin_top = -228.0
+margin_bottom = -164.0
 
 [node name="BrokenPart" parent="DamagablePart5/BrokenSprite" index="0"]
 position = Vector2( 0, -96 )
@@ -401,7 +401,7 @@ texture = ExtResource( 12 )
 
 [node name="BrokenSmoke" parent="DamagablePart5/BrokenSprite" index="1"]
 position = Vector2( 93.7119, -149.996 )
-frame = 0
+frame = 3
 
 [node name="Clock" parent="." instance=ExtResource( 4 )]
 margin_left = 913.0
