@@ -3,8 +3,8 @@ extends Node2D
 const EFFECTS = {
 	"player_gravity_scale": [
 		Globals.DEFAULT_GRAVITY_SCALE,
-		Globals.DEFAULT_GRAVITY_SCALE - 5.0,
-		Globals.DEFAULT_GRAVITY_SCALE - 8.0,
+		Globals.DEFAULT_GRAVITY_SCALE - 7.0,
+		Globals.DEFAULT_GRAVITY_SCALE - 11.0,
 	],
 	"weapon": ["lightning", "bubbles"],
 	"player_size": [
@@ -79,8 +79,14 @@ func change_enemy_size(enemy_size: float) -> void:
 
 
 func change_controls(controls: String) -> void:
+	match controls:
+		"default":
+			_game_update_label.show_text("Finally!")
+		"reversed_directions":
+			_game_update_label.show_text("I'm confused...?!")
+		"scrambled":
+			_game_update_label.show_text("I'm confused...?!")
 	_player.set_control_scheme(controls)
-	_game_update_label.show_text("I'm confused...?!")
 	print("changing controls to: %s" % controls)
 
 

@@ -24,7 +24,7 @@ func _ready() -> void:
 
 func _spawn_gold() -> void:
 	_audio.play()
-	for i in 5:
+	for i in 3:
 		var gold = gold_scene.instance()
 		add_child(gold)
 		gold.position = gold_spawn_location.position
