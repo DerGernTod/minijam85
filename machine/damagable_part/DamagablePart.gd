@@ -73,9 +73,12 @@ func _repair_started() -> void:
 	if sprite.frame == 2:
 		emit_signal("repaired")
 	
-	sprite.frame = 0
-	
 	clock.change_time(30.0)
+	sprite.frame = 1
+	player_body.can_use_repair = true
 	if clock.get_current_time() >= Globals.TIMER_DURATION:
 		clock.visible = false
+		player_body.can_use_repair = false
+		sprite.frame = 0
+		
 

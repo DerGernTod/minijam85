@@ -59,6 +59,15 @@ func set_gravity_scale(g_scale: float) -> void:
 func set_control_scheme(scheme: String) -> void:
 	_control_scheme = scheme
 
+
+func set_current_weapon(weapon: String) -> void:
+	match weapon:
+		"lightning":
+			_cur_weapon = lightning
+		"bubbles":
+			_cur_weapon = bubbles
+
+
 func _ready() -> void:
 	pass
 	

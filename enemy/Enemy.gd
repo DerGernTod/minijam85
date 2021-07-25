@@ -110,7 +110,7 @@ func _part_reached_state_move() -> void:
 	if _action_done:
 		return
 	# let them run a bit more before stopping on the border of the damagable
-	yield(get_tree().create_timer(0.5), "timeout")
+	yield(get_tree().create_timer(0.25), "timeout")
 	_state_machine.travel("attack")
 	_cur_state = STATES.attack
 

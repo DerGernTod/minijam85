@@ -20,19 +20,19 @@ extents = Vector2( 240.299, 35.9598 )
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 666.67, 34.879 )
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 236.771, 34.879 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 130.063, 30.529 )
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 153.609, 30.529 )
 
-[sub_resource type="RectangleShape2D" id=10]
+[sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 140.154, 30.529 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 531.78, 37.7074 )
 
 [node name="Machine" type="Node2D"]
@@ -106,7 +106,7 @@ position = Vector2( 1786.78, 605.357 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D11"]
 position = Vector2( -155.479, 256.914 )
-shape = SubResource( 8 )
+shape = SubResource( 6 )
 one_way_collision = true
 
 [node name="StaticBody2D6" type="StaticBody2D" parent="StaticBodies"]
@@ -114,7 +114,7 @@ position = Vector2( 1118.22, 741 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D6"]
 position = Vector2( 17.6459, -1172.55 )
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 one_way_collision = true
 
 [node name="StaticBody2D12" type="StaticBody2D" parent="StaticBodies"]
@@ -122,7 +122,7 @@ position = Vector2( 1118.22, 741 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D12"]
 position = Vector2( 162.68, -551.054 )
-shape = SubResource( 9 )
+shape = SubResource( 8 )
 one_way_collision = true
 
 [node name="StaticBody2D13" type="StaticBody2D" parent="StaticBodies"]
@@ -130,7 +130,7 @@ position = Vector2( 1118.22, 741 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D13"]
 position = Vector2( -126.588, -445.101 )
-shape = SubResource( 10 )
+shape = SubResource( 9 )
 one_way_collision = true
 
 [node name="StaticBody2D7" type="StaticBody2D" parent="StaticBodies"]
@@ -138,7 +138,7 @@ position = Vector2( 1118.22, 741 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D7"]
 position = Vector2( 570, -730 )
-shape = SubResource( 7 )
+shape = SubResource( 10 )
 one_way_collision = true
 
 [node name="StaticBody2D8" type="StaticBody2D" parent="StaticBodies"]
@@ -146,7 +146,7 @@ position = Vector2( 1118.22, 741 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D8"]
 position = Vector2( 684, -1282 )
-shape = SubResource( 7 )
+shape = SubResource( 10 )
 one_way_collision = true
 
 [node name="StaticBody2D9" type="StaticBody2D" parent="StaticBodies"]
@@ -154,7 +154,7 @@ position = Vector2( 1118.22, 741 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D9"]
 position = Vector2( -594, -1328 )
-shape = SubResource( 7 )
+shape = SubResource( 10 )
 one_way_collision = true
 
 [node name="StaticBody2D10" type="StaticBody2D" parent="StaticBodies"]
@@ -162,7 +162,7 @@ position = Vector2( 1118.22, 741 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D10"]
 position = Vector2( -756, -842 )
-shape = SubResource( 7 )
+shape = SubResource( 10 )
 one_way_collision = true
 
 [node name="DamagablePart" parent="." instance=ExtResource( 3 )]
@@ -181,4 +181,7 @@ position = Vector2( 1512.87, -89.8378 )
 position = Vector2( 853.15, -683.595 )
 
 [node name="Clock" parent="." instance=ExtResource( 4 )]
-position = Vector2( 947.264, 689.09 )
+margin_left = 917.981
+margin_top = 693.715
+margin_right = 981.981
+margin_bottom = 757.715
