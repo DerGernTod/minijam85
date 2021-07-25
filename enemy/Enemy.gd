@@ -4,7 +4,6 @@ class_name Enemy
 signal dealt_damage
 signal died
 
-const ATTACK_TIME = 3.0
 const GRAVITY_SCALE = Globals.DEFAULT_GRAVITY_SCALE
 const DEATH_TIMERS = {
 	"lightning": 1.0,
@@ -18,7 +17,7 @@ const STATES = {
 		"gold_collected": "_gold_collected_state_move",
 	},
 	"attack": {
-		"update": "_update_state_attack",
+		"update": "_noop_arg",
 		"part_reached": "",
 		"part_destroyed": "_part_destroyed_state_attack",
 		"gold_collected": "",
@@ -39,11 +38,12 @@ onready var gravity_magnitude : int = ProjectSettings.get_setting("physics/2d/de
 onready var _sprite = $Sprite
 onready var _init_sprite_scale = _sprite.scale
 onready var _state_machine: AnimationNodeStateMachinePlayback = $AnimationTree.get("parameters/playback")
+onready var _audio = $AudioStreamPlayer2D
+onready var _attack_stream = preload("res://enemy/machine_hit_2.ogg")
 
 var _direction = 0
 var _velocity = Vector2.ZERO
 var _action_done = false
-var _cur_attack_time = ATTACK_TIME
 var _cur_state = STATES.move
 
 func set_direction(dir: int) -> void:
@@ -112,6 +112,7 @@ func _part_reached_state_move() -> void:
 	# let them run a bit more before stopping on the border of the damagable
 	yield(get_tree().create_timer(rand_range(0.1, 0.3)), "timeout")
 	_state_machine.travel("attack")
+	
 	_cur_state = STATES.attack
 
 
@@ -125,11 +126,10 @@ func _gold_collected_state_move() -> void:
 	_direction = prev_dir
 
 
-func _update_state_attack(delta: float) -> void:
-	_cur_attack_time -= delta
-	if _cur_attack_time <= 0:
-		_cur_attack_time = ATTACK_TIME
-		emit_signal("dealt_damage")
+func execute_attack() -> void:
+	emit_signal("dealt_damage")
+	_audio.stream = _attack_stream
+	_audio.play(0)
 
 	
 func _part_destroyed_state_attack() -> void:

@@ -3,7 +3,7 @@
 [ext_resource path="res://enemy/animations/enemy_attack.tres" type="Animation" id=1]
 [ext_resource path="res://enemy/Enemy.gd" type="Script" id=2]
 [ext_resource path="res://enemy/animations/enemyenemy_walk.tres" type="Animation" id=3]
-[ext_resource path="res://enemy/enemy_death_lightning.png" type="Texture" id=4]
+[ext_resource path="res://enemy/enemy_walk.png" type="Texture" id=4]
 [ext_resource path="res://enemy/animations/enemy_attack_start.tres" type="Animation" id=5]
 [ext_resource path="res://enemy/animations/enemydeath_lightning.tres" type="Animation" id=6]
 
@@ -11,47 +11,47 @@
 radius = 31.5386
 height = 35.9604
 
-[sub_resource type="AnimationNodeAnimation" id=4]
+[sub_resource type="AnimationNodeAnimation" id=2]
 animation = "enemy_attack"
 
-[sub_resource type="AnimationNodeAnimation" id=5]
+[sub_resource type="AnimationNodeAnimation" id=3]
 animation = "enemy_attack_start"
 
-[sub_resource type="AnimationNodeAnimation" id=10]
+[sub_resource type="AnimationNodeAnimation" id=4]
 animation = "death_lightning"
 
-[sub_resource type="AnimationNodeAnimation" id=6]
+[sub_resource type="AnimationNodeAnimation" id=5]
 animation = "enemyenemy_walk"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
 switch_mode = 2
 auto_advance = true
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+
 [sub_resource type="AnimationNodeStateMachineTransition" id=9]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=11]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=12]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=13]
-
-[sub_resource type="AnimationNodeStateMachine" id=2]
-states/attack/node = SubResource( 4 )
+[sub_resource type="AnimationNodeStateMachine" id=12]
+states/attack/node = SubResource( 2 )
 states/attack/position = Vector2( 429, 256 )
-states/attack_start/node = SubResource( 5 )
+states/attack_start/node = SubResource( 3 )
 states/attack_start/position = Vector2( 519, 169 )
-states/death_lightning/node = SubResource( 10 )
+states/death_lightning/node = SubResource( 4 )
 states/death_lightning/position = Vector2( 624, 368 )
-states/walk/node = SubResource( 6 )
+states/walk/node = SubResource( 5 )
 states/walk/position = Vector2( 132, 250 )
-transitions = [ "walk", "attack_start", SubResource( 7 ), "attack_start", "attack", SubResource( 8 ), "attack", "walk", SubResource( 9 ), "walk", "death_lightning", SubResource( 11 ), "attack", "death_lightning", SubResource( 12 ), "attack_start", "death_lightning", SubResource( 13 ) ]
+transitions = [ "walk", "attack_start", SubResource( 6 ), "attack_start", "attack", SubResource( 7 ), "attack", "walk", SubResource( 8 ), "walk", "death_lightning", SubResource( 9 ), "attack", "death_lightning", SubResource( 10 ), "attack_start", "death_lightning", SubResource( 11 ) ]
 start_node = "walk"
 end_node = "death_lightning"
 graph_offset = Vector2( -94, 131 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=13]
 
 [node name="Enemy" type="KinematicBody2D" groups=[
 "Enemies",
@@ -65,19 +65,18 @@ speed = 4500
 position = Vector2( -1.7818, -95.7716 )
 scale = Vector2( 6, 6 )
 texture = ExtResource( 4 )
-hframes = 6
-vframes = 3
-frame = 17
+hframes = 8
+frame = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.693085, -49.3954 )
 shape = SubResource( 1 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 2 )
+tree_root = SubResource( 12 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 3 )
+parameters/playback = SubResource( 13 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/death_lightning = ExtResource( 6 )
@@ -86,3 +85,5 @@ anims/enemy_attack_start = ExtResource( 5 )
 anims/enemyenemy_walk = ExtResource( 3 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
