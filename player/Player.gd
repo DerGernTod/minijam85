@@ -39,6 +39,7 @@ onready var bubbles = $BubbleWeapon
 onready var init_sprite_scale = sprite.scale
 onready var _init_layers = collision_mask
 onready var _cur_weapon = lightning
+onready var _audio = $AudioStreamPlayer2D
 
 export var speed := 10.0
 export var damping := 1.0
@@ -105,11 +106,22 @@ func _repair() -> void:
 	sprite.animation = "repair"
 	is_repairing = true
 	emit_signal("repair_started")
+	_play_repair_sounds()
 	yield(sprite, "animation_finished")
 	emit_signal("repair_completed")
 	is_repairing = false
 	sprite.animation = "idle"
 
+
+func _play_repair_sounds() -> void:
+	yield(get_tree().create_timer(1.0), "timeout")
+	_audio.play(0)
+	yield(get_tree().create_timer(0.6), "timeout")
+	_audio.play(0)
+	yield(get_tree().create_timer(0.6), "timeout")
+	_audio.play(0)
+	yield(get_tree().create_timer(0.6), "timeout")
+	_audio.play(0)
 
 func _drop_down() -> void:
 	if _is_dropping:
