@@ -153,6 +153,7 @@ __meta__ = {
 }
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/CenterContainer"]
+visible = false
 margin_left = 460.0
 margin_top = 10.0
 margin_right = 1460.0
