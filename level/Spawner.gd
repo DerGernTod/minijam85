@@ -14,7 +14,7 @@ func set_spawn_scale(spawn_scale: float) -> void:
 
 
 func set_paused(paused: bool) -> void:
-	pause_mode = Node.PAUSE_MODE_STOP if paused else Node.PAUSE_MODE_INHERIT
+	_timer.paused = paused
 
 
 func _ready() -> void:

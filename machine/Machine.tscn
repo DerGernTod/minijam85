@@ -27,13 +27,13 @@ extents = Vector2( 666, 35 )
 extents = Vector2( 240, 35 )
 
 [sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 126, 31 )
+extents = Vector2( 129, 31 )
 
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 153, 30 )
 
 [sub_resource type="RectangleShape2D" id=10]
-extents = Vector2( 141, 30 )
+extents = Vector2( 138, 30 )
 
 [sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 531, 38 )
@@ -55,7 +55,7 @@ __meta__ = {
 }
 
 [node name="GoldSpawnLocation" type="Node2D" parent="."]
-position = Vector2( 842.153, 926.47 )
+position = Vector2( 950.506, 896.232 )
 
 [node name="StaticBodies" type="Node2D" parent="."]
 

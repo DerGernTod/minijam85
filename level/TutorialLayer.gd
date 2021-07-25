@@ -1,7 +1,6 @@
 extends CanvasLayer
 
 signal gold_collected
-signal part_reached
 signal part_damaged
 
 const TUTORIAL_STATES = [
@@ -10,20 +9,26 @@ const TUTORIAL_STATES = [
 		+ "Gold Machine!\nHit <space> to continue.",
 	},
 	{ 
-		"text": "It won't be long until it produces gold. I should use <A> and "\
+		"text": "It takes some time to produce gold. I should use <A> and "\
 		+ "<D> to move and collect it!",
 	},
 	{ 
 		"text": "I have good use for this gold. Better jump up with <W> and go "\
-		+ "down with <S> to reach the vital parts!",
+		+ "down with <S> to reach other parts of my machine!",
+	},
+	{
+		"text": "Oh no, I see someone coming. I'm sure they're after my ideas "\
+		+ "and gold. I have to fend them off with <K>!"
 	},
 	{ 
-		"text": "Keeping those in tact with <J> is crutial! Noone can tell what "\
-		+ "will happen if these parts are damaged...",
+		"text": "They're ruining my machine! It won't be long until it breaks "\
+		+ "apart. No one can tell what will happen then... It might even "\
+		+ "distort reality itself!"
 	},
 	{ 
-		"text": "They're ruining my machine! I have to fend them off with <K>, "\
-		+ "otherwise...",
+		"text": "Keeping it intact with <J> is crucial! I will need some gold "\
+		+ "to create some spare parts though... Luckily my machine will still "\
+		+ "produce some until all parts are broken."
 	},
 ]
 
@@ -39,6 +44,7 @@ func _start() -> void:
 	get_tree().paused = true
 	# intro
 	yield(_text_box.play_text(TUTORIAL_STATES[0].text), "completed")
+	
 	# how to collect gold -> move with a and d
 	yield(_text_box.play_text(TUTORIAL_STATES[1].text), "completed")
 	_text_box.visible = false
@@ -46,14 +52,16 @@ func _start() -> void:
 	yield(self, "gold_collected")
 	_text_box.visible = true
 	get_tree().paused = true
+	
 	# how to jump and drop -> reach vitals with jump
 	yield(_text_box.play_text(TUTORIAL_STATES[2].text), "completed")
 	_text_box.visible = false
 	get_tree().paused = false
-	yield(self, "part_reached")
+	yield(get_tree().create_timer(7), "timeout")
 	_text_box.visible = true
 	get_tree().paused = true
-	# how to repair
+	
+	# oh no they're coming!
 	yield(_text_box.play_text(TUTORIAL_STATES[3].text), "completed")
 	_text_box.visible = false
 	get_tree().paused = false
@@ -64,19 +72,19 @@ func _start() -> void:
 	yield(self, "part_damaged")
 	_text_box.visible = true
 	get_tree().paused = true
+	
 	# how to fight
 	yield(_text_box.play_text(TUTORIAL_STATES[4].text), "completed")
+	yield(_text_box.play_text(TUTORIAL_STATES[5].text), "completed")
 	_text_box.visible = false
 	get_tree().paused = false
+
+
 
 
 func _on_Player_gold_updated(gold: int) -> void:
 	emit_signal("gold_collected")
 
-
-func _on_Player_part_reached() -> void:
-	emit_signal("part_reached")
-	
 
 func _on_DamagablePart_damaged() -> void:
 	emit_signal("part_damaged")
