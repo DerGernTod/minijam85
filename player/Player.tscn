@@ -15,7 +15,7 @@ collision_mask = 11
 script = ExtResource( 2 )
 speed = 5500.0
 damping = 10.5
-jump_power = 900.0
+jump_power = 1050.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 2, -50.1 )
@@ -36,7 +36,7 @@ position = Vector2( -1, -39.3327 )
 position = Vector2( -1, -51 )
 current = true
 limit_left = 0
-limit_top = -1080
+limit_top = -840
 limit_right = 1920
 limit_bottom = 1080
 limit_smoothed = true

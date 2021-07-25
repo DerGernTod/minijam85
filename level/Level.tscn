@@ -9,24 +9,19 @@
 [ext_resource path="res://level/GameOver.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 960, 48 )
+extents = Vector2( 1540.32, 48 )
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 5 )
 
 [node name="Machine" parent="." instance=ExtResource( 3 )]
-position = Vector2( 0, 43 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 625.634, 966.844 )
+position = Vector2( 669.475, 1022 )
 
 [node name="Ground" type="StaticBody2D" parent="."]
 position = Vector2( 0, 1032 )
 collision_layer = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
-position = Vector2( 960, 48 )
-shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Ground"]
 scale = Vector2( 6, 6 )
@@ -35,32 +30,36 @@ centered = false
 region_enabled = true
 region_rect = Rect2( 0, -8, 320, 8 )
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2( 954.5, 48 )
+shape = SubResource( 1 )
+
 [node name="Spawner" parent="." instance=ExtResource( 4 )]
-position = Vector2( 69.9247, 937.187 )
+position = Vector2( -80.0753, 737.187 )
 direction = 1
 
 [node name="Spawner2" parent="." instance=ExtResource( 4 )]
-position = Vector2( -55.0921, 704.105 )
+position = Vector2( -69.0921, -219.895 )
 direction = 1
 
 [node name="Spawner3" parent="." instance=ExtResource( 4 )]
-position = Vector2( -114.039, 330.202 )
+position = Vector2( -72.039, -683.798 )
 direction = 1
 
 [node name="Spawner4" parent="." instance=ExtResource( 4 )]
-position = Vector2( 2091.38, 282.438 )
+position = Vector2( 2009.38, 946.438 )
 direction = -1
 
 [node name="Spawner5" parent="." instance=ExtResource( 4 )]
-position = Vector2( 2082.91, 538.828 )
+position = Vector2( 2012.91, -107.172 )
 direction = -1
 
 [node name="Spawner6" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1794.73, 952.019 )
+position = Vector2( 2006.73, -649.981 )
 direction = -1
 
 [node name="GoldBar" parent="." instance=ExtResource( 6 )]
-position = Vector2( 752.267, 885.47 )
+position = Vector2( 848.434, 998.607 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

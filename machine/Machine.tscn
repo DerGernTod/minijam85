@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://machine/machine.png" type="Texture" id=1]
 [ext_resource path="res://machine/Machine.gd" type="Script" id=2]
@@ -6,19 +6,34 @@
 [ext_resource path="res://clock/Clock.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 406.462, 28.7898 )
+extents = Vector2( 483.901, 28.7898 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 113.315, 17.8572 )
+extents = Vector2( 97.1806, 17.8572 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 597.1, 35.9598 )
+extents = Vector2( 839.634, 35.9598 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 666.67, 34.879 )
+extents = Vector2( 240.299, 35.9598 )
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 67.0361, 37.7074 )
+extents = Vector2( 666.67, 34.879 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 236.771, 34.879 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 130.063, 30.529 )
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 153.609, 30.529 )
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 140.154, 30.529 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 531.78, 37.7074 )
 
 [node name="Machine" type="Node2D"]
 script = ExtResource( 2 )
@@ -29,6 +44,7 @@ scale = Vector2( 6, 6 )
 texture = ExtResource( 1 )
 centered = false
 __meta__ = {
+"_edit_lock_": true,
 "_editor_description_": ""
 }
 
@@ -38,23 +54,34 @@ position = Vector2( 842.153, 926.47 )
 [node name="StaticBodies" type="Node2D" parent="."]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="StaticBodies"]
-position = Vector2( 410.099, 841.452 )
+position = Vector2( 386.099, 839.452 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D"]
+position = Vector2( -72, -4 )
 shape = SubResource( 1 )
 one_way_collision = true
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="StaticBodies"]
-position = Vector2( 707.051, 524.802 )
+position = Vector2( 465.051, -371.198 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D2"]
+position = Vector2( -53.0064, 48.772 )
+shape = SubResource( 2 )
+one_way_collision = true
+
+[node name="StaticBody2D14" type="StaticBody2D" parent="StaticBodies"]
+position = Vector2( 465.051, -371.198 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D14"]
+position = Vector2( -54.6883, -89.135 )
 shape = SubResource( 2 )
 one_way_collision = true
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="StaticBodies"]
-position = Vector2( 256.366, 454.289 )
+position = Vector2( 596.366, 502.289 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D3"]
+position = Vector2( 68, 10 )
 shape = SubResource( 3 )
 one_way_collision = true
 
@@ -62,28 +89,96 @@ one_way_collision = true
 position = Vector2( 1580.35, 397 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D4"]
-shape = SubResource( 3 )
+position = Vector2( -806.907, -306.471 )
+shape = SubResource( 4 )
 one_way_collision = true
 
 [node name="StaticBody2D5" type="StaticBody2D" parent="StaticBodies"]
 position = Vector2( 1786.78, 605.357 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D5"]
-shape = SubResource( 4 )
+position = Vector2( -26, 38 )
+shape = SubResource( 5 )
+one_way_collision = true
+
+[node name="StaticBody2D11" type="StaticBody2D" parent="StaticBodies"]
+position = Vector2( 1786.78, 605.357 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D11"]
+position = Vector2( -155.479, 256.914 )
+shape = SubResource( 8 )
 one_way_collision = true
 
 [node name="StaticBody2D6" type="StaticBody2D" parent="StaticBodies"]
 position = Vector2( 1118.22, 741 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D6"]
-shape = SubResource( 5 )
+position = Vector2( 17.6459, -1172.55 )
+shape = SubResource( 6 )
+one_way_collision = true
+
+[node name="StaticBody2D12" type="StaticBody2D" parent="StaticBodies"]
+position = Vector2( 1118.22, 741 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D12"]
+position = Vector2( 162.68, -551.054 )
+shape = SubResource( 9 )
+one_way_collision = true
+
+[node name="StaticBody2D13" type="StaticBody2D" parent="StaticBodies"]
+position = Vector2( 1118.22, 741 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D13"]
+position = Vector2( -126.588, -445.101 )
+shape = SubResource( 10 )
+one_way_collision = true
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="StaticBodies"]
+position = Vector2( 1118.22, 741 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D7"]
+position = Vector2( 570, -730 )
+shape = SubResource( 7 )
+one_way_collision = true
+
+[node name="StaticBody2D8" type="StaticBody2D" parent="StaticBodies"]
+position = Vector2( 1118.22, 741 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D8"]
+position = Vector2( 684, -1282 )
+shape = SubResource( 7 )
+one_way_collision = true
+
+[node name="StaticBody2D9" type="StaticBody2D" parent="StaticBodies"]
+position = Vector2( 1118.22, 741 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D9"]
+position = Vector2( -594, -1328 )
+shape = SubResource( 7 )
+one_way_collision = true
+
+[node name="StaticBody2D10" type="StaticBody2D" parent="StaticBodies"]
+position = Vector2( 1118.22, 741 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D10"]
+position = Vector2( -756, -842 )
+shape = SubResource( 7 )
 one_way_collision = true
 
 [node name="DamagablePart" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1329.74, 854.926 )
+position = Vector2( 1288.53, 964.382 )
 
 [node name="DamagablePart2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 700.765, 291.878 )
+position = Vector2( 364.079, 404.505 )
+
+[node name="DamagablePart3" parent="." instance=ExtResource( 3 )]
+position = Vector2( 722.765, -205.838 )
+
+[node name="DamagablePart4" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1512.87, -89.8378 )
+
+[node name="DamagablePart5" parent="." instance=ExtResource( 3 )]
+position = Vector2( 853.15, -683.595 )
 
 [node name="Clock" parent="." instance=ExtResource( 4 )]
-position = Vector2( 833.264, 767.09 )
+position = Vector2( 947.264, 689.09 )
