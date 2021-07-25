@@ -18,6 +18,7 @@ animations = [ {
 } ]
 
 [node name="DamagablePart" type="Area2D"]
+scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
