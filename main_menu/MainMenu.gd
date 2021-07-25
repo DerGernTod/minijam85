@@ -32,7 +32,7 @@ func _start() -> void:
 	_tween.interpolate_method(self, "_hide_play_label", 1, 0, 0.5)
 	_tween.start()
 	yield(get_tree().create_timer(0.75), "timeout")
-	get_tree().change_scene("res://level/Level.tscn")
+	get_tree().change_scene("res://level/LevelTutorial.tscn")
 
 
 func _hide_play_label(alpha: float) -> void:

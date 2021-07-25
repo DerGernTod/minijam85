@@ -3,6 +3,7 @@ class_name DamagablePart
 
 signal destroyed
 signal repaired
+signal damaged
 
 onready var clock = $Clock
 onready var sprite = $AnimatedSprite
@@ -26,6 +27,7 @@ func _ready() -> void:
 func apply_damage() -> void:
 	if sprite.frame == 2:
 		return
+	emit_signal("damaged")
 	sprite.frame = max(sprite.frame, 1)
 	clock.change_time(-1)
 	clock.visible = true
@@ -48,6 +50,7 @@ func _clock_timed_out() -> void:
 func _body_entered(body: Node) -> void:
 	if body is Player:
 		body.connect("repair_started", self, "_repair_started")
+		body.part_reached()
 		if sprite.frame != 0:
 			body.can_use_repair = true
 		player_body = body

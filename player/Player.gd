@@ -30,6 +30,7 @@ const CONTROL_SCHEMES = {
 signal repair_started
 signal repair_completed
 signal gold_updated
+signal part_reached
 
 onready var gravity_vector : Vector2 = ProjectSettings.get_setting("physics/2d/default_gravity_vector")
 onready var gravity_magnitude : int = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -82,6 +83,10 @@ func collect_gold() -> void:
 	emit_signal("gold_updated", _cur_gold_amount)
 	_audio.stream = _stream_gold
 	_audio.play()
+	
+	
+func part_reached() -> void:
+	emit_signal("part_reached")
 
 
 func _ready() -> void:

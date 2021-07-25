@@ -28,6 +28,9 @@ func _spawn_gold() -> void:
 	gold_clock.set_physics_process(true)
 
 
+
+
+
 func _on_part_destroyed() -> void:
 	num_living_parts -= 1
 	emit_signal("part_destroyed")
