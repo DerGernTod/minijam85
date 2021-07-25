@@ -18,7 +18,9 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="DamagablePart" type="Area2D"]
+[node name="DamagablePart" type="Area2D" groups=[
+"MachineVitals",
+]]
 scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 4 )
 

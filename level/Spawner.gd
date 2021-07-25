@@ -13,6 +13,10 @@ func set_spawn_scale(spawn_scale: float) -> void:
 	_spawn_scale = spawn_scale
 
 
+func set_paused(paused: bool) -> void:
+	pause_mode = Node.PAUSE_MODE_STOP if paused else Node.PAUSE_MODE_INHERIT
+
+
 func _ready() -> void:
 	_timer.connect("timeout", self, "_on_timer_timeout")
 	_timer.start(rand_range(5.0, 15.0))

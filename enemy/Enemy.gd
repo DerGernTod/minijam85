@@ -72,6 +72,8 @@ func kill(death_type: String) -> void:
 	if _cur_state == STATES.die:
 		return
 	collision_layer = 0
+	collision_mask = 0
+	set_physics_process(false)
 	_state_machine.travel("death_%s" % death_type)
 	emit_signal("died", self)
 	_cur_state = STATES.die
