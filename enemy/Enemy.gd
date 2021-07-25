@@ -40,6 +40,7 @@ onready var _init_sprite_scale = _sprite.scale
 onready var _state_machine: AnimationNodeStateMachinePlayback = $AnimationTree.get("parameters/playback")
 onready var _audio = $AudioStreamPlayer2D
 onready var _attack_stream = preload("res://enemy/machine_hit_2.ogg")
+onready var _death_lightning_stream = preload("res://enemy/death_lightning.ogg")
 
 var _direction = 0
 var _velocity = Vector2.ZERO
@@ -75,8 +76,13 @@ func kill(death_type: String) -> void:
 	emit_signal("died", self)
 	_cur_state = STATES.die
 	Globals.increment_stat(death_type)
+	if death_type == "lightning":
+		_audio.stream = _death_lightning_stream
+		_audio.play()
 	# play and wait for death animation
 	yield(get_tree().create_timer(DEATH_TIMERS[death_type]), "timeout")
+	if _audio.playing:
+		yield(_audio, "finished")
 	queue_free()
 
 
