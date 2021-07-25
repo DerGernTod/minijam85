@@ -33,11 +33,11 @@ signal repair_completed
 onready var gravity_vector : Vector2 = ProjectSettings.get_setting("physics/2d/default_gravity_vector")
 onready var gravity_magnitude : int = ProjectSettings.get_setting("physics/2d/default_gravity")
 onready var sprite = $Sprite
-onready var lightning = $Lightning
+onready var lightning = $LightningWeapon
 onready var bubbles = $BubbleWeapon
 onready var init_sprite_scale = sprite.scale
 onready var _init_layers = collision_mask
-onready var _cur_weapon = bubbles
+onready var _cur_weapon = lightning
 
 export var speed := 10.0
 export var damping := 1.0
