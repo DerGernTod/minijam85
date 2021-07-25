@@ -8,7 +8,7 @@ const ATTACK_TIME = 3.0
 const GRAVITY_SCALE = Globals.DEFAULT_GRAVITY_SCALE
 const DEATH_TIMERS = {
 	"lightning": 1.0,
-	"bubble": 25.0,
+	"bubble": 0.0,
 }
 const STATES = {
 	"move": {
@@ -100,6 +100,10 @@ func _update_state_move(delta: float) -> void:
 	if is_on_floor():
 		_velocity.x += speed * delta * _direction
 	_velocity += gravity_vector * gravity_magnitude * GRAVITY_SCALE * delta
+	if _action_done:
+		if (_direction < 0 and position.x < -20)\
+			or (_direction > 0 and position.x > 1940):
+				queue_free()
 
 
 func _part_reached_state_move() -> void:

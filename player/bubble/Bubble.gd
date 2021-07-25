@@ -8,9 +8,12 @@ const STATES = {
 export(float) var speed = 200.0
 
 onready var _start_height = position.y
+onready var _enemy_sprite = $EnemySprite
+onready var _visibility_notifier = $VisibilityNotifier2D
 
 var _cur_state = STATES.seeking
 var _direction = 0
+var _random_offset = randi()
 
 
 func set_direction(dir: int) -> void:
@@ -19,6 +22,7 @@ func set_direction(dir: int) -> void:
 
 func _ready() -> void:
 	connect("body_entered", self, "_body_entered")
+	_visibility_notifier.connect("screen_exited", self, "queue_free")
 
 
 func _physics_process(delta: float) -> void:
@@ -26,13 +30,14 @@ func _physics_process(delta: float) -> void:
 
 
 func _update_seeking(delta: float) -> void:
-	position.x += delta * speed
-	position.y += sin(OS.get_ticks_msec() / 160)
+	position.x += delta * speed * _direction
+	position.y += sin(_random_offset + OS.get_ticks_msec() / 160)
 	
 
 func _update_leaving(delta: float) -> void:
 	position.y -= delta * speed * 0.5
-	position.x += sin(OS.get_ticks_msec() / 200)
+	position.x += sin(_random_offset + OS.get_ticks_msec() / 200)
+	_enemy_sprite.rotate(delta)
 
 
 func _body_entered(body: Node) -> void:
@@ -40,7 +45,5 @@ func _body_entered(body: Node) -> void:
 		disconnect("body_entered", self, "_body_entered")
 		body.kill("bubble")
 		_cur_state = STATES.leaving
-		body.get_parent().remove_child(body)
-		add_child(body)
-		body.position = Vector2.ZERO
+		_enemy_sprite.visible = true
 		
