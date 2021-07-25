@@ -52,7 +52,9 @@ func _body_entered(body: Node) -> void:
 
 
 func _remove_enemy(enemy: Enemy) -> void:
-	enemies.remove(enemies.find(enemy))
+	var index = enemies.find(enemy)
+	if index >= 0:
+		enemies.remove(index)
 
 
 func _body_exited(body: Node) -> void:
@@ -61,11 +63,13 @@ func _body_exited(body: Node) -> void:
 		body.can_use_repair = false
 		player_body = null
 	if body is Enemy:
-		body.disconnect("dealt_damage", self, "apply_damage")
-		_remove_enemy(body)
+		if enemies.has(body):
+			body.disconnect("dealt_damage", self, "apply_damage")
+			_remove_enemy(body)
 
 
 func _repair_started() -> void:
+	player_body.can_use_repair = false
 	clock.set_physics_process(false)
 	yield(player_body, "repair_completed")
 	clock.set_physics_process(true)
@@ -73,9 +77,12 @@ func _repair_started() -> void:
 	if sprite.frame == 2:
 		emit_signal("repaired")
 	
-	sprite.frame = 0
-	
 	clock.change_time(30.0)
+	sprite.frame = 1
+	player_body.can_use_repair = true
 	if clock.get_current_time() >= Globals.TIMER_DURATION:
 		clock.visible = false
+		player_body.can_use_repair = false
+		sprite.frame = 0
+		
 

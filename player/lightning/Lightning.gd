@@ -24,7 +24,6 @@ func look_right(right: bool) -> void:
 
 
 func fire() -> void:
-	set_physics_process(true)
 	yield(get_tree().create_timer(0.5), "timeout")
 	sprite.visible = true
 	sprite.frame = 0
@@ -32,14 +31,14 @@ func fire() -> void:
 	sprite.play()
 	
 	yield(get_tree().create_timer(0.15), "timeout")
-	_apply_damage()
+	set_physics_process(true)
 	
 	yield(sprite, "animation_finished")
 	sprite.visible = false
 	set_physics_process(false)
 
 
-func _apply_damage() -> void:
+func _physics_process(delta: float) -> void:
 	var bodies = get_overlapping_bodies()
 	for body in bodies:
 		if body is Enemy:

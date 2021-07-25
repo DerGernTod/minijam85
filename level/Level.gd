@@ -36,6 +36,7 @@ var cur_effects = {
 }
 
 func _ready() -> void:
+	randomize()
 	Globals.reset_stats()
 
 
@@ -48,6 +49,7 @@ func _on_Machine_part_destroyed():
 	var new_effect = effect_values[randi() % effect_values.size()]
 	
 	while new_effect == cur_effects[effect_key]:
+		print("trying new effect since this one is the current: %s %s" % [effect_key, new_effect])
 		new_effect = effect_values[randi() % effect_values.size()]
 	
 	cur_effects[effect_key] = new_effect
@@ -60,6 +62,7 @@ func change_player_gravity_scale(gravity_scale: float) -> void:
 
 
 func change_weapon(weapon: String) -> void:
+	_player.set_current_weapon(weapon)
 	print("changing weapon to: %s" % weapon)
 
 

@@ -29,4 +29,7 @@ scale = Vector2( 19, 19 )
 frames = SubResource( 2 )
 
 [node name="Clock" parent="." instance=ExtResource( 5 )]
-position = Vector2( 151.207, -93.0123 )
+margin_left = -34.5198
+margin_top = -141.613
+margin_right = 29.4802
+margin_bottom = -77.6132

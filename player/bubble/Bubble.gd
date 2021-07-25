@@ -31,12 +31,12 @@ func _physics_process(delta: float) -> void:
 
 func _update_seeking(delta: float) -> void:
 	position.x += delta * speed * _direction
-	position.y += sin(_random_offset + OS.get_ticks_msec() / 160)
+	position.y += sin(_random_offset + OS.get_ticks_msec() / 160.0)
 	
 
 func _update_leaving(delta: float) -> void:
 	position.y -= delta * speed * 0.5
-	position.x += sin(_random_offset + OS.get_ticks_msec() / 200)
+	position.x += sin(_random_offset + OS.get_ticks_msec() / 200.0)
 	_enemy_sprite.rotate(delta)
 
 
