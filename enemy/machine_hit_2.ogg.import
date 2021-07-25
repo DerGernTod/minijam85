@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/machine_hit_2.ogg-d4ac3e5b40bb1b8c1e956ebdfe7b30d4.oggstr"
+
+[deps]
+
+source_file="res://enemy/machine_hit_2.ogg"
+dest_files=[ "res://.import/machine_hit_2.ogg-d4ac3e5b40bb1b8c1e956ebdfe7b30d4.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
