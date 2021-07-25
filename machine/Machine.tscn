@@ -27,13 +27,13 @@ extents = Vector2( 666, 35 )
 extents = Vector2( 240, 35 )
 
 [sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 129, 31 )
+extents = Vector2( 126, 31 )
 
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 153, 30 )
 
 [sub_resource type="RectangleShape2D" id=10]
-extents = Vector2( 138, 30 )
+extents = Vector2( 141, 30 )
 
 [sub_resource type="RectangleShape2D" id=11]
 extents = Vector2( 531, 38 )
@@ -111,7 +111,7 @@ one_way_collision = true
 [node name="StaticBody2D6" type="StaticBody2D" parent="StaticBodies"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D6"]
-position = Vector2( 1137, -431 )
+position = Vector2( 1134, -431 )
 shape = SubResource( 8 )
 one_way_collision = true
 
@@ -125,7 +125,7 @@ one_way_collision = true
 [node name="StaticBody2D13" type="StaticBody2D" parent="StaticBodies"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D13"]
-position = Vector2( 984, 294 )
+position = Vector2( 987, 294 )
 shape = SubResource( 10 )
 one_way_collision = true
 
