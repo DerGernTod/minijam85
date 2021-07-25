@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://level/ground.png" type="Texture" id=2]
 [ext_resource path="res://machine/Machine.tscn" type="PackedScene" id=3]
 [ext_resource path="res://level/Spawner.tscn" type="PackedScene" id=4]
 [ext_resource path="res://level/Level.gd" type="Script" id=5]
@@ -9,49 +9,54 @@
 [ext_resource path="res://level/GameOver.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 919, 31 )
+extents = Vector2( 960, 48 )
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 5 )
 
 [node name="Machine" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, 43 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 211.065, 234.621 )
+position = Vector2( 625.634, 966.844 )
 
 [node name="Ground" type="StaticBody2D" parent="."]
-position = Vector2( 945.14, 1016.17 )
+position = Vector2( 0, 1032 )
 collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2( 960, 48 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="Ground"]
-scale = Vector2( 28.68, 1 )
+scale = Vector2( 6, 6 )
 texture = ExtResource( 2 )
+centered = false
+region_enabled = true
+region_rect = Rect2( 0, -8, 320, 8 )
 
 [node name="Spawner" parent="." instance=ExtResource( 4 )]
-position = Vector2( 69.9247, 894.187 )
+position = Vector2( 69.9247, 937.187 )
 direction = 1
 
 [node name="Spawner2" parent="." instance=ExtResource( 4 )]
-position = Vector2( -55.0921, 661.105 )
+position = Vector2( -55.0921, 704.105 )
 direction = 1
 
 [node name="Spawner3" parent="." instance=ExtResource( 4 )]
-position = Vector2( -114.039, 287.202 )
+position = Vector2( -114.039, 330.202 )
 direction = 1
 
 [node name="Spawner4" parent="." instance=ExtResource( 4 )]
-position = Vector2( 2091.38, 239.438 )
+position = Vector2( 2091.38, 282.438 )
 direction = -1
 
 [node name="Spawner5" parent="." instance=ExtResource( 4 )]
-position = Vector2( 2082.91, 495.828 )
+position = Vector2( 2082.91, 538.828 )
 direction = -1
 
 [node name="Spawner6" parent="." instance=ExtResource( 4 )]
-position = Vector2( 1794.73, 909.019 )
+position = Vector2( 1794.73, 952.019 )
 direction = -1
 
 [node name="GoldBar" parent="." instance=ExtResource( 6 )]
@@ -60,6 +65,7 @@ position = Vector2( 752.267, 885.47 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GameOverScreen" parent="CanvasLayer" instance=ExtResource( 7 )]
+visible = false
 
 [connection signal="all_parts_destroyed" from="Machine" to="." method="_on_Machine_all_parts_destroyed"]
 [connection signal="part_destroyed" from="Machine" to="." method="_on_Machine_part_destroyed"]
