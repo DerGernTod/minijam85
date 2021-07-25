@@ -92,25 +92,25 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	call(_cur_state.update, delta)
-	_velocity.x = lerp(_velocity.x, 0, delta * damping)
+	_velocity.x = lerp(_velocity.x, 0, delta * damping)	
+	_velocity += gravity_vector * gravity_magnitude * GRAVITY_SCALE * delta
 	_velocity = move_and_slide(_velocity, Vector2.UP)
 
 
 func _update_state_move(delta: float) -> void:
 	if is_on_floor():
 		_velocity.x += speed * delta * _direction
-	_velocity += gravity_vector * gravity_magnitude * GRAVITY_SCALE * delta
-	if _action_done:
-		if (_direction < 0 and position.x < -20)\
-			or (_direction > 0 and position.x > 1940):
-				queue_free()
+
+	if (_direction < 0 and global_position.x < -20)\
+		or (_direction > 0 and global_position.x > 1940):
+			queue_free()
 
 
 func _part_reached_state_move() -> void:
 	if _action_done:
 		return
 	# let them run a bit more before stopping on the border of the damagable
-	yield(get_tree().create_timer(0.25), "timeout")
+	yield(get_tree().create_timer(rand_range(0.1, 0.3)), "timeout")
 	_state_machine.travel("attack")
 	_cur_state = STATES.attack
 

@@ -98,7 +98,7 @@ func _drop_down() -> void:
 		return
 	_is_dropping = true
 	collision_mask = collision_mask ^ 1
-	yield(get_tree().create_timer(0.5), "timeout")
+	yield(get_tree().create_timer(0.25), "timeout")
 	collision_mask = collision_mask | 1
 	_is_dropping = false
 
