@@ -39,9 +39,9 @@ margin_bottom = 1075.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer"]
 margin_left = 425.0
-margin_top = 35.0
+margin_top = 85.0
 margin_right = 1485.0
-margin_bottom = 1035.0
+margin_bottom = 985.0
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/CenterContainer/VBoxContainer"]
 margin_right = 1060.0
@@ -122,30 +122,10 @@ custom_fonts/font = ExtResource( 1 )
 text = "0"
 align = 2
 
-[node name="EnemiesBurned" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer"]
+[node name="EnemiesElectrocuted" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer"]
 margin_top = 600.0
 margin_right = 1060.0
 margin_bottom = 696.0
-
-[node name="EnemiesBurnedAmountLabel" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/EnemiesBurned"]
-margin_right = 720.0
-margin_bottom = 96.0
-custom_fonts/font = ExtResource( 1 )
-text = "Enemies burned:"
-
-[node name="EnemiesBurnedAmount" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/EnemiesBurned"]
-margin_left = 724.0
-margin_right = 1060.0
-margin_bottom = 96.0
-size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 1 )
-text = "0"
-align = 2
-
-[node name="EnemiesElectrocuted" type="HBoxContainer" parent="MarginContainer/CenterContainer/VBoxContainer"]
-margin_top = 700.0
-margin_right = 1060.0
-margin_bottom = 796.0
 
 [node name="EnemiesElectrocutedAmountLabel" type="Label" parent="MarginContainer/CenterContainer/VBoxContainer/EnemiesElectrocuted"]
 margin_right = 1008.0
@@ -163,9 +143,9 @@ text = "0"
 align = 2
 
 [node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/CenterContainer/VBoxContainer"]
-margin_top = 800.0
+margin_top = 700.0
 margin_right = 1060.0
-margin_bottom = 1000.0
+margin_bottom = 900.0
 custom_constants/margin_right = 20
 custom_constants/margin_top = 50
 custom_constants/margin_left = 20

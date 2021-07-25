@@ -1,11 +1,10 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://level/ground.png" type="Texture" id=2]
 [ext_resource path="res://machine/Machine.tscn" type="PackedScene" id=3]
 [ext_resource path="res://level/Spawner.tscn" type="PackedScene" id=4]
 [ext_resource path="res://level/Level.gd" type="Script" id=5]
-[ext_resource path="res://gold/Gold.tscn" type="PackedScene" id=6]
 [ext_resource path="res://level/GameOver.tscn" type="PackedScene" id=7]
 [ext_resource path="res://level/GameUpdateLabel.tscn" type="PackedScene" id=8]
 [ext_resource path="res://fonts/FreePixel.ttf" type="DynamicFontData" id=9]
@@ -79,9 +78,6 @@ direction = -1
 [node name="Spawner6" parent="." instance=ExtResource( 4 )]
 position = Vector2( 2006.73, -649.981 )
 direction = -1
-
-[node name="GoldBar" parent="." instance=ExtResource( 6 )]
-position = Vector2( 941.873, 1006.62 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
