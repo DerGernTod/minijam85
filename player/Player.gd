@@ -144,10 +144,12 @@ func _physics_process(delta: float) -> void:
 	velocity.x = lerp(velocity.x, 0, delta * damping)
 	
 	if velocity.x > 4:
-		_cur_weapon.look_right(true)
+		lightning.look_right(true)
+		bubbles.look_right(true)
 		sprite.scale.x = init_sprite_scale.x
 	if velocity.x < -4:
-		_cur_weapon.look_right(false)
+		lightning.look_right(false)
+		bubbles.look_right(false)
 		sprite.scale.x = -init_sprite_scale.x
 
 	velocity += gravity_vector * gravity_magnitude * _gravity_scale * delta
