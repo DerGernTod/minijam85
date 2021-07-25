@@ -6,11 +6,13 @@ signal repaired
 signal damaged
 
 onready var clock = $Clock
-onready var sprite = $AnimatedSprite
+onready var broken_sprite = $BrokenSprite
+onready var working_sprite = $WorkingSprite
 onready var _audio = $AudioStreamPlayer
 
 var player_body: Player = null
 var enemies = [];
+var is_broken = false
 
 func _ready() -> void:
 	connect("body_entered", self, "_body_entered")
@@ -25,10 +27,9 @@ func _ready() -> void:
 
 
 func apply_damage() -> void:
-	if sprite.frame == 2:
+	if is_broken:
 		return
 	emit_signal("damaged")
-	sprite.frame = max(sprite.frame, 1)
 	clock.change_time(-1)
 	clock.visible = true
 	clock.set_physics_process(true)
@@ -37,24 +38,28 @@ func apply_damage() -> void:
 
 
 func _clock_timed_out() -> void:
-	if sprite.frame == 2:
+	if is_broken:
 		return
-	
-	sprite.frame = 2
+	_set_broken(true)
 	emit_signal("destroyed")
 	_audio.play(0)
 	for enemy in enemies:
 		enemy.part_destroyed()
 
 
+func _set_broken(broken: bool) -> void:
+	broken_sprite.visible = broken
+	working_sprite.visible = not broken
+	is_broken = broken
+
 func _body_entered(body: Node) -> void:
 	if body is Player:
 		body.connect("repair_started", self, "_repair_started")
 		body.part_reached()
-		if sprite.frame != 0:
+		if clock.visible:
 			body.can_use_repair = true
 		player_body = body
-	if body is Enemy and sprite.frame != 2:
+	if body is Enemy and not is_broken:
 		enemies.append(body)
 		body.connect("dealt_damage", self, "apply_damage")
 		body.connect("died", self, "_remove_enemy")
@@ -84,15 +89,13 @@ func _repair_started() -> void:
 	yield(player_body, "repair_completed")
 	clock.set_physics_process(true)
 	
-	if sprite.frame == 2:
+	if is_broken:
 		emit_signal("repaired")
 	
 	clock.change_time(30.0)
-	sprite.frame = 1
+	_set_broken(false)
 	player_body.can_use_repair = true
 	if clock.get_current_time() >= Globals.TIMER_DURATION:
 		clock.visible = false
 		player_body.can_use_repair = false
-		sprite.frame = 0
-		
 
