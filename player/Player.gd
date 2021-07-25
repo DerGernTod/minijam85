@@ -29,6 +29,7 @@ const CONTROL_SCHEMES = {
 
 signal repair_started
 signal repair_completed
+signal gold_updated
 
 onready var gravity_vector : Vector2 = ProjectSettings.get_setting("physics/2d/default_gravity_vector")
 onready var gravity_magnitude : int = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -50,7 +51,7 @@ var is_repairing = false
 var _is_dropping = false
 var _gravity_scale = Globals.DEFAULT_GRAVITY_SCALE setget set_gravity_scale, get_gravity_scale
 var _control_scheme = "default" setget set_control_scheme
-
+var _cur_gold_amount = 0
 
 func get_gravity_scale() -> float:
 	return _gravity_scale
@@ -72,6 +73,11 @@ func set_current_weapon(weapon: String) -> void:
 			_cur_weapon = bubbles
 
 
+func collect_gold() -> void:
+	_cur_gold_amount += 1
+	emit_signal("gold_updated", _cur_gold_amount)
+
+
 func _ready() -> void:
 	pass
 	
@@ -88,6 +94,14 @@ func _trigger_weapon() -> void:
 
 
 func _repair() -> void:
+	if is_repairing:
+		return
+	if _cur_gold_amount <= 0:
+		# play "invalid action" sound
+		return
+	_cur_gold_amount -= 1
+	emit_signal("gold_updated", _cur_gold_amount)
+
 	sprite.animation = "repair"
 	is_repairing = true
 	emit_signal("repair_started")
@@ -159,5 +173,3 @@ func _physics_process(delta: float) -> void:
 	velocity += gravity_vector * gravity_magnitude * _gravity_scale * delta
 	velocity = move_and_slide(velocity, Vector2.UP)
 
-func collect_gold() -> void:
-	pass
