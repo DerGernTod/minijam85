@@ -25,7 +25,7 @@ const EFFECTS = {
 
 onready var _player = $Player
 onready var _game_over = $CanvasLayer/GameOverScreen
-onready var _game_update_label = $CanvasLayer/GameUpdateLabel
+onready var _game_update_label = $CanvasLayer/CenterContainer/PanelContainer/GameUpdateLabel
 onready var _tween = $Tween
 
 var cur_effects = {
@@ -40,11 +40,6 @@ var cur_effects = {
 func _ready() -> void:
 	randomize()
 	Globals.reset_stats()
-
-
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("shoot"):
-		_on_Machine_part_destroyed()
 
 
 func _on_Machine_part_destroyed():
@@ -80,7 +75,7 @@ func change_player_size(player_size: float) -> void:
 	_tween.interpolate_property(_player, "scale", prev_scale, Vector2.ONE * player_size, 1)
 	_tween.start()
 	if player_size == Globals.DEFAULT_PLAYER_SIZE:
-		_game_update_label.show_text("I like this size")
+		_game_update_label.show_text("I like this size...")
 	elif player_size < Globals.DEFAULT_PLAYER_SIZE:
 		_game_update_label.show_text("I'm tiny!")
 	else:

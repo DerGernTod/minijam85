@@ -4,7 +4,7 @@
 [ext_resource path="res://level/GameUpdateLabel.gd" type="Script" id=2]
 
 [sub_resource type="DynamicFont" id=1]
-size = 68
+size = 52
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 1 )
 
