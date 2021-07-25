@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://level/ground.png" type="Texture" id=2]
@@ -32,6 +32,9 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 corner_detail = 2
 
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 2000, 20 )
+
 [node name="Level" type="Node2D"]
 script = ExtResource( 5 )
 
@@ -39,6 +42,7 @@ script = ExtResource( 5 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 669.475, 1022 )
+collision_mask = 27
 
 [node name="Ground" type="StaticBody2D" parent="."]
 position = Vector2( 0, 1032 )
@@ -175,6 +179,27 @@ custom_colors/default_color = Color( 0, 0, 0, 1 )
 [node name="GameOverScreen" parent="CanvasLayer" instance=ExtResource( 7 )]
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="Bounds" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Bounds"]
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/StaticBody2D"]
+rotation = 1.5708
+shape = SubResource( 4 )
+one_way_collision = true
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Bounds"]
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bounds/StaticBody2D2"]
+position = Vector2( 1920, 0 )
+rotation = -1.5708
+shape = SubResource( 4 )
+one_way_collision = true
 
 [connection signal="all_parts_destroyed" from="Machine" to="." method="_on_Machine_all_parts_destroyed"]
 [connection signal="part_destroyed" from="Machine" to="." method="_on_Machine_part_destroyed"]
