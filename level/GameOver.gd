@@ -11,7 +11,7 @@ onready var _enemies_electrocuted_label = $MarginContainer/CenterContainer/VBoxC
 func show() -> void:
 	_gold_collected_label.text = str(Globals.get_stat("gold_collected"))
 	_gold_lost_label.text = str(Globals.get_stat("gold_lost"))
-	_enemies_bubbled_label.text = str(Globals.get_stat("bubbles"))
+	_enemies_bubbled_label.text = str(Globals.get_stat("bubble"))
 	_enemies_burned_label.text = str(Globals.get_stat("fire"))
 	_enemies_electrocuted_label.text = str(Globals.get_stat("lightning"))
 

@@ -64,7 +64,6 @@ position = Vector2( 848.434, 998.607 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GameOverScreen" parent="CanvasLayer" instance=ExtResource( 7 )]
-visible = false
 
 [connection signal="all_parts_destroyed" from="Machine" to="." method="_on_Machine_all_parts_destroyed"]
 [connection signal="part_destroyed" from="Machine" to="." method="_on_Machine_part_destroyed"]

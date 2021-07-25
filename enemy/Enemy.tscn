@@ -84,3 +84,5 @@ anims/death_lightning = ExtResource( 6 )
 anims/enemy_attack = ExtResource( 1 )
 anims/enemy_attack_start = ExtResource( 5 )
 anims/enemyenemy_walk = ExtResource( 3 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
