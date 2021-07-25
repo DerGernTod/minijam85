@@ -36,7 +36,7 @@ var cur_effects = {
 }
 
 func _ready() -> void:
-	pass
+	Globals.reset_stats()
 
 
 func _on_Machine_part_destroyed():

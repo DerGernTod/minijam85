@@ -25,7 +25,20 @@ position = Vector2( 0, -45 )
 scale = Vector2( 6, 6 )
 frames = ExtResource( 1 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="Lightning" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, 11.6673 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+limit_left = 0
+limit_top = -1080
+limit_right = 1920
+limit_bottom = 1080
+limit_smoothed = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+drag_margin_top = 0.6
+drag_margin_bottom = 0.4

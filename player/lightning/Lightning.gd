@@ -45,8 +45,8 @@ func _apply_damage() -> void:
 		if body is Enemy:
 			body.kill("lightning")
 
-	var areas = get_overlapping_areas()
-	for area in areas:
-		if area is DamagablePart:
-			area.apply_damage()
-		
+#	var areas = get_overlapping_areas()
+#	for area in areas:
+#		if area is DamagablePart:
+#			area.apply_damage()
+#

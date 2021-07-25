@@ -68,6 +68,7 @@ func kill(death_type: String) -> void:
 	_state_machine.travel("death_%s" % death_type)
 	emit_signal("died", self)
 	_cur_state = STATES.die
+	Globals.increment_stat(death_type)
 	# play and wait for death animation
 	yield(get_tree().create_timer(1.0), "timeout")
 	queue_free()

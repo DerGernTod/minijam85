@@ -39,7 +39,7 @@ position = Vector2( -55.0921, 661.105 )
 direction = 1
 
 [node name="Spawner3" parent="." instance=ExtResource( 4 )]
-position = Vector2( -95.3516, 343.266 )
+position = Vector2( -114.039, 287.202 )
 direction = 1
 
 [node name="Spawner4" parent="." instance=ExtResource( 4 )]
@@ -60,7 +60,6 @@ position = Vector2( 752.267, 885.47 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GameOverScreen" parent="CanvasLayer" instance=ExtResource( 7 )]
-modulate = Color( 1, 1, 1, 0 )
 
 [connection signal="all_parts_destroyed" from="Machine" to="." method="_on_Machine_all_parts_destroyed"]
 [connection signal="part_destroyed" from="Machine" to="." method="_on_Machine_part_destroyed"]
