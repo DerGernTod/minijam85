@@ -6,6 +6,7 @@ signal repaired
 
 onready var clock = $Clock
 onready var sprite = $AnimatedSprite
+onready var _audio = $AudioStreamPlayer2D
 
 var player_body: Player = null
 var enemies = [];
@@ -34,6 +35,7 @@ func _clock_timed_out() -> void:
 	
 	sprite.frame = 2
 	emit_signal("destroyed")
+	_audio.play(0)
 	for enemy in enemies:
 		enemy.part_destroyed()
 
