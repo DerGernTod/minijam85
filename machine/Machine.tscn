@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://machine/machine.png" type="Texture" id=1]
 [ext_resource path="res://machine/Machine.gd" type="Script" id=2]
@@ -34,6 +34,9 @@ extents = Vector2( 140.154, 30.529 )
 
 [sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 531.78, 37.7074 )
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 651.013, 37.7074 )
 
 [node name="Machine" type="Node2D"]
 script = ExtResource( 2 )
@@ -153,8 +156,8 @@ one_way_collision = true
 position = Vector2( 1118.22, 741 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D9"]
-position = Vector2( -594, -1328 )
-shape = SubResource( 10 )
+position = Vector2( -715.299, -1328 )
+shape = SubResource( 11 )
 one_way_collision = true
 
 [node name="StaticBody2D10" type="StaticBody2D" parent="StaticBodies"]
