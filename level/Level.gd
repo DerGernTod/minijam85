@@ -6,7 +6,7 @@ const EFFECTS = {
 		Globals.DEFAULT_GRAVITY_SCALE - 5.0,
 		Globals.DEFAULT_GRAVITY_SCALE - 8.0,
 	],
-	"weapon": ["lightning", "fire", "bubbles"],
+	"weapon": ["lightning", "bubbles"],
 	"player_size": [
 		Globals.DEFAULT_PLAYER_SIZE - 0.5, 
 		Globals.DEFAULT_PLAYER_SIZE, 

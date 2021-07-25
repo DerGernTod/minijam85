@@ -92,7 +92,7 @@ func _repair_started() -> void:
 	if is_broken:
 		emit_signal("repaired")
 	
-	clock.change_time(30.0)
+	clock.change_time(61.0)
 	_set_broken(false)
 	player_body.can_use_repair = true
 	if clock.get_current_time() >= Globals.TIMER_DURATION:
