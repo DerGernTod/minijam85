@@ -48,8 +48,12 @@ var weapon_active := false
 var can_use_repair = false setget _set_can_use_repair
 var is_repairing = false
 var _is_dropping = false
-var _gravity_scale = Globals.DEFAULT_GRAVITY_SCALE setget set_gravity_scale
+var _gravity_scale = Globals.DEFAULT_GRAVITY_SCALE setget set_gravity_scale, get_gravity_scale
 var _control_scheme = "default" setget set_control_scheme
+
+
+func get_gravity_scale() -> float:
+	return _gravity_scale
 
 
 func set_gravity_scale(g_scale: float) -> void:

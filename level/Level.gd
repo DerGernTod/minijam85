@@ -25,6 +25,8 @@ const EFFECTS = {
 
 onready var _player = $Player
 onready var _game_over = $CanvasLayer/GameOverScreen
+onready var _game_update_label = $CanvasLayer/GameUpdateLabel
+onready var _tween = $Tween
 
 var cur_effects = {
 	"player_gravity_scale": Globals.DEFAULT_GRAVITY_SCALE,
@@ -38,6 +40,11 @@ var cur_effects = {
 func _ready() -> void:
 	randomize()
 	Globals.reset_stats()
+
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("shoot"):
+		_on_Machine_part_destroyed()
 
 
 func _on_Machine_part_destroyed():
@@ -59,15 +66,25 @@ func _on_Machine_part_destroyed():
 func change_player_gravity_scale(gravity_scale: float) -> void:
 	_player.set_gravity_scale(gravity_scale)
 	print("changing gravity scale to: %s" % gravity_scale)
+	_game_update_label.show_text("Something's off with gravity...")
 
 
 func change_weapon(weapon: String) -> void:
 	_player.set_current_weapon(weapon)
+	_game_update_label.show_text("Feel the power of %s!" % weapon)
 	print("changing weapon to: %s" % weapon)
 
 
 func change_player_size(player_size: float) -> void:
-	_player.scale = Vector2.ONE * player_size
+	var prev_scale = _player.scale
+	_tween.interpolate_property(_player, "scale", prev_scale, Vector2.ONE * player_size, 1)
+	_tween.start()
+	if player_size == Globals.DEFAULT_PLAYER_SIZE:
+		_game_update_label.show_text("I like this size")
+	elif player_size < Globals.DEFAULT_PLAYER_SIZE:
+		_game_update_label.show_text("I'm tiny!")
+	else:
+		_game_update_label.show_text("I'm huge!")
 	print("changing player size to: %s" % player_size)
 
 
@@ -76,11 +93,18 @@ func change_enemy_size(enemy_size: float) -> void:
 		enemy.scale = Vector2.ONE * enemy_size
 	for spawner in get_tree().get_nodes_in_group("Spawners"):
 		spawner.set_spawn_scale(enemy_size)
+	if enemy_size == Globals.DEFAULT_ENEMY_SIZE:
+		_game_update_label.show_text("They look normal again...")
+	elif enemy_size < Globals.DEFAULT_ENEMY_SIZE:
+		_game_update_label.show_text("They're tiny!")
+	else:
+		_game_update_label.show_text("They're huge!")
 	print("changing enemy size to: %s" % enemy_size)
 
 
 func change_controls(controls: String) -> void:
 	_player.set_control_scheme(controls)
+	_game_update_label.show_text("I'm confused...?!")
 	print("changing controls to: %s" % controls)
 
 

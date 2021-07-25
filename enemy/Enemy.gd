@@ -46,6 +46,7 @@ var _velocity = Vector2.ZERO
 var _action_done = false
 var _cur_state = STATES.move
 
+
 func set_direction(dir: int) -> void:
 	_direction = dir
 	_sprite.scale.x = _init_sprite_scale.x * dir
@@ -69,6 +70,7 @@ func collect_gold() -> void:
 func kill(death_type: String) -> void:
 	if _cur_state == STATES.die:
 		return
+	collision_layer = 0
 	_state_machine.travel("death_%s" % death_type)
 	emit_signal("died", self)
 	_cur_state = STATES.die
