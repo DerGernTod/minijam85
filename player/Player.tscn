@@ -25,8 +25,8 @@ shape = SubResource( 1 )
 position = Vector2( -1, -96 )
 scale = Vector2( 6, 6 )
 frames = ExtResource( 1 )
-animation = "idle"
-frame = 1
+animation = "attack"
+frame = 13
 playing = true
 
 [node name="LightningWeapon" parent="." instance=ExtResource( 3 )]
