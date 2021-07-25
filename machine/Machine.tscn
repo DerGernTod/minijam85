@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://machine/machine_temp.png" type="Texture" id=1]
+[ext_resource path="res://machine/machine.png" type="Texture" id=1]
 [ext_resource path="res://machine/Machine.gd" type="Script" id=2]
 [ext_resource path="res://machine/damagable_part/DamagablePart.tscn" type="PackedScene" id=3]
 [ext_resource path="res://clock/Clock.tscn" type="PackedScene" id=4]
@@ -24,9 +24,13 @@ extents = Vector2( 67.0361, 37.7074 )
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 19, 19 )
+position = Vector2( 0, -840 )
+scale = Vector2( 6, 6 )
 texture = ExtResource( 1 )
 centered = false
+__meta__ = {
+"_editor_description_": ""
+}
 
 [node name="GoldSpawnLocation" type="Node2D" parent="."]
 position = Vector2( 842.153, 926.47 )
@@ -34,14 +38,14 @@ position = Vector2( 842.153, 926.47 )
 [node name="StaticBodies" type="Node2D" parent="."]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="StaticBodies"]
-position = Vector2( 268.988, 770.896 )
+position = Vector2( 410.099, 841.452 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D"]
 shape = SubResource( 1 )
 one_way_collision = true
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="StaticBodies"]
-position = Vector2( 649.095, 550 )
+position = Vector2( 707.051, 524.802 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBodies/StaticBody2D2"]
 shape = SubResource( 2 )
