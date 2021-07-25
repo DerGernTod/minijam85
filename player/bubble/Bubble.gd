@@ -10,6 +10,8 @@ export(float) var speed = 200.0
 onready var _start_height = position.y
 onready var _enemy_sprite = $EnemySprite
 onready var _visibility_notifier = $VisibilityNotifier2D
+onready var _audio = $AudioStreamPlayer2D
+onready var _stream_hit = preload("res://player/bubble/bubble_hit.ogg")
 
 var _cur_state = STATES.seeking
 var _direction = 0
@@ -44,6 +46,8 @@ func _body_entered(body: Node) -> void:
 	if body is Enemy:
 		disconnect("body_entered", self, "_body_entered")
 		body.kill("bubble")
+		_audio.stream = _stream_hit
+		_audio.play()
 		_cur_state = STATES.leaving
 		_enemy_sprite.visible = true
 		

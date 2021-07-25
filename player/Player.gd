@@ -38,8 +38,11 @@ onready var lightning = $LightningWeapon
 onready var bubbles = $BubbleWeapon
 onready var init_sprite_scale = sprite.scale
 onready var _init_layers = collision_mask
-onready var _cur_weapon = lightning
+onready var _cur_weapon = bubbles
 onready var _audio = $AudioStreamPlayer2D
+onready var _stream_repair = preload("res://player/repair.ogg")
+onready var _stream_gold = preload("res://player/gold_collected.ogg")
+onready var _stream_repair_invalid = preload("res://player/repair_invalid.ogg")
 
 export var speed := 10.0
 export var damping := 1.0
@@ -77,6 +80,8 @@ func set_current_weapon(weapon: String) -> void:
 func collect_gold() -> void:
 	_cur_gold_amount += 1
 	emit_signal("gold_updated", _cur_gold_amount)
+	_audio.stream = _stream_gold
+	_audio.play()
 
 
 func _ready() -> void:
@@ -98,7 +103,8 @@ func _repair() -> void:
 	if is_repairing:
 		return
 	if _cur_gold_amount <= 0:
-		# play "invalid action" sound
+		_audio.stream = _stream_repair_invalid
+		_audio.play()
 		return
 	_cur_gold_amount -= 1
 	emit_signal("gold_updated", _cur_gold_amount)
@@ -115,13 +121,14 @@ func _repair() -> void:
 
 func _play_repair_sounds() -> void:
 	yield(get_tree().create_timer(1.0), "timeout")
-	_audio.play(0)
+	_audio.stream = _stream_repair
+	_audio.play()
 	yield(get_tree().create_timer(0.6), "timeout")
-	_audio.play(0)
+	_audio.play()
 	yield(get_tree().create_timer(0.6), "timeout")
-	_audio.play(0)
+	_audio.play()
 	yield(get_tree().create_timer(0.6), "timeout")
-	_audio.play(0)
+	_audio.play()
 
 func _drop_down() -> void:
 	if _is_dropping:
