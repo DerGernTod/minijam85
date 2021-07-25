@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/death_lightning.ogg-69e196cd35ab120d9e37911a3c4f560e.oggstr"
+
+[deps]
+
+source_file="res://enemy/death_lightning.ogg"
+dest_files=[ "res://.import/death_lightning.ogg-69e196cd35ab120d9e37911a3c4f560e.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
