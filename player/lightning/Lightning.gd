@@ -4,7 +4,7 @@ onready var sprite = $Sprite
 onready var init_sprite_scale = $Sprite.scale
 onready var col_shape = $CollisionShape2D
 onready var init_inner_pos = col_shape.position
-
+onready var _audio = $AudioStreamPlayer2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	sprite.visible = false
@@ -24,6 +24,7 @@ func look_right(right: bool) -> void:
 
 
 func fire() -> void:
+	_audio.play()
 	yield(get_tree().create_timer(0.4), "timeout")
 	sprite.visible = true
 	sprite.frame = 0
