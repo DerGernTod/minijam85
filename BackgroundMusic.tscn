@@ -5,4 +5,5 @@
 [node name="AudioStreamPlayer" type="AudioStreamPlayer"]
 pause_mode = 2
 stream = ExtResource( 1 )
+volume_db = -12.0
 autoplay = true
