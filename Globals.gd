@@ -13,7 +13,7 @@ func reset_stats() -> void:
 		"gold_collected": 0,
 		"gold_lost": 0,
 		"lightning": 0,
-		"bubbles": 0,
+		"bubble": 0,
 		"fire": 0,
 	}
 	

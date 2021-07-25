@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://player/PlayerSpriteFrames.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://player/Player.gd" type="Script" id=2]
 [ext_resource path="res://player/lightning/Lightning.tscn" type="PackedScene" id=3]
+[ext_resource path="res://player/bubble/BubbleWeapon.tscn" type="PackedScene" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 29.7121
@@ -17,21 +18,21 @@ damping = 10.5
 jump_power = 900.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 3, 0.9 )
+position = Vector2( 2, -50.1 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
-position = Vector2( 0, -45 )
+position = Vector2( -1, -96 )
 scale = Vector2( 6, 6 )
 frames = ExtResource( 1 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="Lightning" parent="." instance=ExtResource( 3 )]
-position = Vector2( 0, 11.6673 )
+position = Vector2( -1, -39.3327 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( -1, -51 )
 current = true
 limit_left = 0
 limit_top = -1080
@@ -42,3 +43,6 @@ drag_margin_v_enabled = true
 smoothing_enabled = true
 drag_margin_top = 0.6
 drag_margin_bottom = 0.4
+
+[node name="BubbleWeapon" parent="." instance=ExtResource( 4 )]
+position = Vector2( -1, -51 )

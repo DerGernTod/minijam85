@@ -6,6 +6,10 @@ signal died
 
 const ATTACK_TIME = 3.0
 const GRAVITY_SCALE = Globals.DEFAULT_GRAVITY_SCALE
+const DEATH_TIMERS = {
+	"lightning": 1.0,
+	"bubble": 25.0,
+}
 const STATES = {
 	"move": {
 		"update": "_update_state_move",
@@ -70,7 +74,7 @@ func kill(death_type: String) -> void:
 	_cur_state = STATES.die
 	Globals.increment_stat(death_type)
 	# play and wait for death animation
-	yield(get_tree().create_timer(1.0), "timeout")
+	yield(get_tree().create_timer(DEATH_TIMERS[death_type]), "timeout")
 	queue_free()
 
 

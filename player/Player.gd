@@ -34,20 +34,23 @@ onready var gravity_vector : Vector2 = ProjectSettings.get_setting("physics/2d/d
 onready var gravity_magnitude : int = ProjectSettings.get_setting("physics/2d/default_gravity")
 onready var sprite = $Sprite
 onready var lightning = $Lightning
+onready var bubbles = $BubbleWeapon
 onready var init_sprite_scale = sprite.scale
 onready var _init_layers = collision_mask
+onready var _cur_weapon = bubbles
 
 export var speed := 10.0
 export var damping := 1.0
 export var jump_power := 100.0
 
 var velocity := Vector2.ZERO
-var lightning_active := false
+var weapon_active := false
 var can_use_repair = false setget _set_can_use_repair
 var is_repairing = false
 var _is_dropping = false
 var _gravity_scale = Globals.DEFAULT_GRAVITY_SCALE setget set_gravity_scale
 var _control_scheme = "default" setget set_control_scheme
+
 
 func set_gravity_scale(g_scale: float) -> void:
 	_gravity_scale = g_scale
@@ -64,11 +67,11 @@ func _set_can_use_repair(can_use: bool) -> void:
 	can_use_repair = can_use
 
 
-func _trigger_lightning() -> void:
-	lightning_active = true
-	lightning.fire()
+func _trigger_weapon() -> void:
+	weapon_active = true
+	_cur_weapon.fire()
 	yield(sprite, "animation_finished")
-	lightning_active = false
+	weapon_active = false
 
 
 func _repair() -> void:
@@ -108,16 +111,16 @@ func _physics_process(delta: float) -> void:
 		velocity += Vector2.LEFT * speed * delta
 	if is_on_floor() and Input.is_action_just_pressed(_control("jump")):
 		velocity.y -= jump_power
-	if Input.is_action_just_pressed(_control("shoot")) and not lightning_active:
+	if Input.is_action_just_pressed(_control("shoot")) and not weapon_active:
 		if Input.is_action_pressed(_control("right")) or Input.is_action_pressed(_control("left")):
 			sprite.animation = "walk_attack"
 		else:
 			sprite.animation = "attack"
-		_trigger_lightning()
+		_trigger_weapon()
 	if Input.is_action_just_pressed(_control("drop")) and position.y < 900:
 		_drop_down()
 
-	if not lightning_active:
+	if not weapon_active:
 		if not is_on_floor():
 			if velocity.y > 350:
 				sprite.animation = "fall"
@@ -132,10 +135,10 @@ func _physics_process(delta: float) -> void:
 	velocity.x = lerp(velocity.x, 0, delta * damping)
 	
 	if velocity.x > 4:
-		lightning.look_right(true)
+		_cur_weapon.look_right(true)
 		sprite.scale.x = init_sprite_scale.x
 	if velocity.x < -4:
-		lightning.look_right(false)
+		_cur_weapon.look_right(false)
 		sprite.scale.x = -init_sprite_scale.x
 
 	velocity += gravity_vector * gravity_magnitude * _gravity_scale * delta
