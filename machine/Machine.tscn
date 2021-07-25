@@ -1,9 +1,17 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://machine/machine.png" type="Texture" id=1]
 [ext_resource path="res://machine/Machine.gd" type="Script" id=2]
 [ext_resource path="res://machine/damagable_part/DamagablePart.tscn" type="PackedScene" id=3]
 [ext_resource path="res://clock/Clock.tscn" type="PackedScene" id=4]
+[ext_resource path="res://machine/damagable_part/parts/machine_part_right_bottom.png" type="Texture" id=5]
+[ext_resource path="res://machine/damagable_part/parts/machine_part_right_bottom_damaged.png" type="Texture" id=6]
+[ext_resource path="res://machine/damagable_part/parts/machine_part_left_middle_damaged.png" type="Texture" id=7]
+[ext_resource path="res://machine/damagable_part/parts/machine_part_left_middle.png" type="Texture" id=8]
+[ext_resource path="res://machine/damagable_part/parts/machine_part_right_top.png" type="Texture" id=9]
+[ext_resource path="res://machine/damagable_part/parts/machine_part_right_top_damaged.png" type="Texture" id=10]
+[ext_resource path="res://machine/damagable_part/parts/machine_part_left_top.png" type="Texture" id=11]
+[ext_resource path="res://machine/damagable_part/parts/machine_part_left_top_damaged.png" type="Texture" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 484, 29 )
@@ -40,6 +48,146 @@ extents = Vector2( 531, 38 )
 
 [sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 651, 37 )
+
+[sub_resource type="RectangleShape2D" id=13]
+extents = Vector2( 120, 110 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 5 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 5 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 5 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 5 )
+region = Rect2( 256, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 5 )
+region = Rect2( 320, 0, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=20]
+animations = [ {
+"frames": [ SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=21]
+extents = Vector2( 130, 80 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 64, 32 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 8 )
+region = Rect2( 64, 0, 64, 32 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 8 )
+region = Rect2( 128, 0, 64, 32 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 8 )
+region = Rect2( 192, 0, 64, 32 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 8 )
+region = Rect2( 256, 0, 64, 32 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 8 )
+region = Rect2( 320, 0, 64, 32 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 8 )
+region = Rect2( 384, 0, 64, 32 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 8 )
+region = Rect2( 448, 0, 64, 32 )
+
+[sub_resource type="SpriteFrames" id=30]
+animations = [ {
+"frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=31]
+extents = Vector2( 100, 100 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 9 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 9 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 9 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=36]
+animations = [ {
+"frames": [ SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ) ],
+"loop": true,
+"name": "default",
+"speed": 8.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=37]
+extents = Vector2( 130, 90 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 11 )
+region = Rect2( 0, 0, 64, 32 )
+
+[sub_resource type="AtlasTexture" id=39]
+atlas = ExtResource( 11 )
+region = Rect2( 64, 0, 64, 32 )
+
+[sub_resource type="AtlasTexture" id=40]
+atlas = ExtResource( 11 )
+region = Rect2( 128, 0, 64, 32 )
+
+[sub_resource type="AtlasTexture" id=41]
+atlas = ExtResource( 11 )
+region = Rect2( 192, 0, 64, 32 )
+
+[sub_resource type="AtlasTexture" id=42]
+atlas = ExtResource( 11 )
+region = Rect2( 256, 0, 64, 32 )
+
+[sub_resource type="AtlasTexture" id=43]
+atlas = ExtResource( 11 )
+region = Rect2( 320, 0, 64, 32 )
+
+[sub_resource type="SpriteFrames" id=44]
+animations = [ {
+"frames": [ SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ) ],
+"loop": true,
+"name": "default",
+"speed": 7.0
+} ]
 
 [node name="Machine" type="Node2D"]
 script = ExtResource( 2 )
@@ -158,22 +306,92 @@ shape = SubResource( 11 )
 one_way_collision = true
 
 [node name="DamagablePart" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1288.53, 968.382 )
+position = Vector2( 1272, 1032 )
+
+[node name="CollisionShape2D" parent="DamagablePart" index="0"]
+position = Vector2( 0, -110 )
+shape = SubResource( 13 )
+
+[node name="BrokenSprite" parent="DamagablePart" index="1"]
+texture = ExtResource( 6 )
+
+[node name="WorkingSprite" parent="DamagablePart" index="2"]
+frames = SubResource( 20 )
+frame = 1
+
+[node name="Clock" parent="DamagablePart" index="3"]
+margin_top = -293.0
+margin_bottom = -229.0
 
 [node name="DamagablePart2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 364.079, 398.505 )
+position = Vector2( 379, 462 )
 
 [node name="DamagablePart3" parent="." instance=ExtResource( 3 )]
-position = Vector2( 722.765, -213.838 )
+position = Vector2( 684, -54 )
+
+[node name="CollisionShape2D" parent="DamagablePart3" index="0"]
+position = Vector2( 0, -176 )
+shape = SubResource( 21 )
+
+[node name="BrokenSprite" parent="DamagablePart3" index="1"]
+texture = ExtResource( 7 )
+
+[node name="WorkingSprite" parent="DamagablePart3" index="2"]
+frames = SubResource( 30 )
+frame = 7
+
+[node name="Clock" parent="DamagablePart3" index="3"]
+margin_left = -39.0
+margin_top = -309.0
+margin_right = 41.0
+margin_bottom = -245.0
 
 [node name="DamagablePart4" parent="." instance=ExtResource( 3 )]
-position = Vector2( 1512.87, -81.8378 )
+position = Vector2( 1506, -18 )
+
+[node name="CollisionShape2D" parent="DamagablePart4" index="0"]
+position = Vector2( 0, -100 )
+shape = SubResource( 31 )
+
+[node name="BrokenSprite" parent="DamagablePart4" index="1"]
+position = Vector2( 0, -96 )
+texture = ExtResource( 10 )
+
+[node name="WorkingSprite" parent="DamagablePart4" index="2"]
+position = Vector2( 0, -96 )
+frames = SubResource( 36 )
+frame = 2
+
+[node name="Clock" parent="DamagablePart4" index="3"]
+margin_top = -261.0
+margin_bottom = -197.0
 
 [node name="DamagablePart5" parent="." instance=ExtResource( 3 )]
-position = Vector2( 853.15, -675.595 )
+position = Vector2( 883, -612 )
+
+[node name="CollisionShape2D" parent="DamagablePart5" index="0"]
+position = Vector2( 0, -90 )
+shape = SubResource( 37 )
+
+[node name="BrokenSprite" parent="DamagablePart5" index="1"]
+position = Vector2( 0, -96 )
+texture = ExtResource( 12 )
+
+[node name="WorkingSprite" parent="DamagablePart5" index="2"]
+position = Vector2( 0, -96 )
+frames = SubResource( 44 )
+
+[node name="Clock" parent="DamagablePart5" index="3"]
+margin_top = -241.0
+margin_bottom = -177.0
 
 [node name="Clock" parent="." instance=ExtResource( 4 )]
-margin_left = 917.981
-margin_top = 693.715
-margin_right = 981.981
-margin_bottom = 757.715
+margin_left = 913.0
+margin_top = 760.0
+margin_right = 983.0
+margin_bottom = 824.0
+
+[editable path="DamagablePart"]
+[editable path="DamagablePart3"]
+[editable path="DamagablePart4"]
+[editable path="DamagablePart5"]
