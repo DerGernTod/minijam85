@@ -1,25 +1,30 @@
 extends RichTextLabel
 
-onready var _tween = $Tween
+var text_running = false
 
-var _scroll_queue_active = false
-var _cur_line = 0
+onready var _tween = $Tween
 
 func _ready() -> void:
 	show_text("They're coming!!")
 	
 
 func show_text(new_text: String) -> void:
-	while _tween.is_active():
-		yield(_tween, "tween_all_completed")
-		yield(get_tree().create_timer(1.5), "timeout")
+	while text_running:
+		yield(get_tree(), "idle_frame")
+	text_running = true
+	get_parent().visible = true
+	print("text length: %s, visible chars: %s" % [text.length(), visible_characters])
 	newline()
 	add_text(new_text)
-	var prev_visible_characters = visible_characters
 	_tween.interpolate_property(self,
 		"visible_characters",
-		prev_visible_characters,
-		text.length(),
+		null,
+		text.length() - get_line_count() + 1,
 		0.5)
 	_tween.start()
+	yield(_tween, "tween_completed")
+	yield(get_tree().create_timer(1.5), "timeout")
+	get_parent().visible = false
+	text_running = false
+	
 

@@ -6,7 +6,7 @@ signal repaired
 
 onready var clock = $Clock
 onready var sprite = $AnimatedSprite
-onready var _audio = $AudioStreamPlayer2D
+onready var _audio = $AudioStreamPlayer
 
 var player_body: Player = null
 var enemies = [];
@@ -16,6 +16,11 @@ func _ready() -> void:
 	connect("body_exited", self, "_body_exited")
 	clock.connect("timeout", self, "_clock_timed_out")
 	clock.visible = false
+
+#
+#func _process(delta: float) -> void:
+#	if Input.is_action_just_pressed("shoot"):
+#		_clock_timed_out()
 
 
 func apply_damage() -> void:

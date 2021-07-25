@@ -29,6 +29,7 @@ const CONTROL_SCHEMES = {
 
 signal repair_started
 signal repair_completed
+signal gold_updated
 
 onready var gravity_vector : Vector2 = ProjectSettings.get_setting("physics/2d/default_gravity_vector")
 onready var gravity_magnitude : int = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -37,7 +38,11 @@ onready var lightning = $LightningWeapon
 onready var bubbles = $BubbleWeapon
 onready var init_sprite_scale = sprite.scale
 onready var _init_layers = collision_mask
-onready var _cur_weapon = lightning
+onready var _cur_weapon = bubbles
+onready var _audio = $AudioStreamPlayer2D
+onready var _stream_repair = preload("res://player/repair.ogg")
+onready var _stream_gold = preload("res://player/gold_collected.ogg")
+onready var _stream_repair_invalid = preload("res://player/repair_invalid.ogg")
 
 export var speed := 10.0
 export var damping := 1.0
@@ -50,7 +55,7 @@ var is_repairing = false
 var _is_dropping = false
 var _gravity_scale = Globals.DEFAULT_GRAVITY_SCALE setget set_gravity_scale, get_gravity_scale
 var _control_scheme = "default" setget set_control_scheme
-
+var _cur_gold_amount = 0
 
 func get_gravity_scale() -> float:
 	return _gravity_scale
@@ -72,6 +77,13 @@ func set_current_weapon(weapon: String) -> void:
 			_cur_weapon = bubbles
 
 
+func collect_gold() -> void:
+	_cur_gold_amount += 1
+	emit_signal("gold_updated", _cur_gold_amount)
+	_audio.stream = _stream_gold
+	_audio.play()
+
+
 func _ready() -> void:
 	pass
 	
@@ -88,14 +100,35 @@ func _trigger_weapon() -> void:
 
 
 func _repair() -> void:
+	if is_repairing:
+		return
+	if _cur_gold_amount <= 0:
+		_audio.stream = _stream_repair_invalid
+		_audio.play()
+		return
+	_cur_gold_amount -= 1
+	emit_signal("gold_updated", _cur_gold_amount)
+
 	sprite.animation = "repair"
 	is_repairing = true
 	emit_signal("repair_started")
+	_play_repair_sounds()
 	yield(sprite, "animation_finished")
 	emit_signal("repair_completed")
 	is_repairing = false
 	sprite.animation = "idle"
 
+
+func _play_repair_sounds() -> void:
+	yield(get_tree().create_timer(1.0), "timeout")
+	_audio.stream = _stream_repair
+	_audio.play()
+	yield(get_tree().create_timer(0.6), "timeout")
+	_audio.play()
+	yield(get_tree().create_timer(0.6), "timeout")
+	_audio.play()
+	yield(get_tree().create_timer(0.6), "timeout")
+	_audio.play()
 
 func _drop_down() -> void:
 	if _is_dropping:
@@ -159,5 +192,3 @@ func _physics_process(delta: float) -> void:
 	velocity += gravity_vector * gravity_magnitude * _gravity_scale * delta
 	velocity = move_and_slide(velocity, Vector2.UP)
 
-func collect_gold() -> void:
-	pass

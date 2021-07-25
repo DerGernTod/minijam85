@@ -25,8 +25,9 @@ const EFFECTS = {
 
 onready var _player = $Player
 onready var _game_over = $CanvasLayer/GameOverScreen
-onready var _game_update_label = $CanvasLayer/GameUpdateLabel
+onready var _game_update_label = $CanvasLayer/CenterContainer/PanelContainer/GameUpdateLabel
 onready var _tween = $Tween
+onready var _gold_label = $CanvasLayer/MarginContainer/PanelContainer/HBoxContainer/GoldLabel
 
 var cur_effects = {
 	"player_gravity_scale": Globals.DEFAULT_GRAVITY_SCALE,
@@ -36,31 +37,6 @@ var cur_effects = {
 #	"color": [],
 	"controls": "default",
 }
-
-func _ready() -> void:
-	randomize()
-	Globals.reset_stats()
-
-
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("shoot"):
-		_on_Machine_part_destroyed()
-
-
-func _on_Machine_part_destroyed():
-	print("part destroyed, choose effect")
-	var effect_keys = EFFECTS.keys()
-	var effect_key = effect_keys[randi() % effect_keys.size()]
-	var effect_values = EFFECTS[effect_key]
-	
-	var new_effect = effect_values[randi() % effect_values.size()]
-	
-	while new_effect == cur_effects[effect_key]:
-		print("trying new effect since this one is the current: %s %s" % [effect_key, new_effect])
-		new_effect = effect_values[randi() % effect_values.size()]
-	
-	cur_effects[effect_key] = new_effect
-	call("change_%s" % effect_key, new_effect)
 
 
 func change_player_gravity_scale(gravity_scale: float) -> void:
@@ -80,7 +56,7 @@ func change_player_size(player_size: float) -> void:
 	_tween.interpolate_property(_player, "scale", prev_scale, Vector2.ONE * player_size, 1)
 	_tween.start()
 	if player_size == Globals.DEFAULT_PLAYER_SIZE:
-		_game_update_label.show_text("I like this size")
+		_game_update_label.show_text("I like this size...")
 	elif player_size < Globals.DEFAULT_PLAYER_SIZE:
 		_game_update_label.show_text("I'm tiny!")
 	else:
@@ -110,3 +86,28 @@ func change_controls(controls: String) -> void:
 
 func _on_Machine_all_parts_destroyed() -> void:
 	_game_over.show()
+
+
+func _ready() -> void:
+	randomize()
+	Globals.reset_stats()
+
+
+func _on_Machine_part_destroyed():
+	print("part destroyed, choose effect")
+	var effect_keys = EFFECTS.keys()
+	var effect_key = effect_keys[randi() % effect_keys.size()]
+	var effect_values = EFFECTS[effect_key]
+	
+	var new_effect = effect_values[randi() % effect_values.size()]
+	
+	while new_effect == cur_effects[effect_key]:
+		print("trying new effect since this one is the current: %s %s" % [effect_key, new_effect])
+		new_effect = effect_values[randi() % effect_values.size()]
+	
+	cur_effects[effect_key] = new_effect
+	call("change_%s" % effect_key, new_effect)
+
+
+func _on_Player_gold_updated(gold: int) -> void:
+	_gold_label.text = str(gold)

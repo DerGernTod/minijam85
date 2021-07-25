@@ -101,10 +101,10 @@ position = Vector2( 300, 400 )
 scale = Vector2( 20, 20 )
 frames = ExtResource( 2 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="Tween" type="Tween" parent="."]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
+volume_db = -2.0
