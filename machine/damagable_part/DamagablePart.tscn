@@ -92,7 +92,7 @@ shape = SubResource( 1 )
 position = Vector2( 0, -192 )
 scale = Vector2( 6, 6 )
 frames = SubResource( 2 )
-frame = 5
+frame = 4
 playing = true
 
 [node name="Clock" parent="." instance=ExtResource( 5 )]
@@ -118,5 +118,5 @@ texture = ExtResource( 1 )
 position = Vector2( 107.635, -232.087 )
 scale = Vector2( 6, 6 )
 frames = SubResource( 16 )
-frame = 4
+frame = 1
 playing = true

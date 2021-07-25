@@ -5,7 +5,8 @@ var text_running = false
 onready var _tween = $Tween
 
 func _ready() -> void:
-	show_text("They're coming!!")
+	pass
+	#show_text("They're coming!!")
 	
 
 func show_text(new_text: String) -> void:
